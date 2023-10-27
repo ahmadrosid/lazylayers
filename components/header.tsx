@@ -9,10 +9,12 @@ export function Header() {
       <div className="pl-8 pr-8 flex h-14 items-center">
         <div className="mr-4 hidden md:flex">
           <nav className="flex items-center space-x-2 text-sm font-medium">
-            <div className="text-black font-bold tracking-tight flex">
-              <LayoutTemplate className="w-5 h-5 mr-2" />
-              LazyLayout
-            </div>
+            <Link href={"/"}>
+              <div className="text-black font-bold tracking-tight flex">
+                <LayoutTemplate className="w-5 h-5 mr-2" />
+                LazyLayout
+              </div>
+            </Link>
 
             <div className="px-4">
               <Link href={"/thumbnail"}>
