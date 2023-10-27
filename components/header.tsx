@@ -12,7 +12,7 @@ export function Header() {
             <Link href={"/"}>
               <div className="text-black font-bold tracking-tight flex">
                 <LayoutTemplate className="w-5 h-5 mr-2" />
-                LazyLayout
+                LazyLayers
               </div>
             </Link>
 
