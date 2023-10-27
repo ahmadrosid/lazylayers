@@ -14,7 +14,7 @@ import uuid from "@/lib/uuid";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { GradientPicker } from "@/components/gradient-picker";
 import { Slider } from "@/components/ui/slider";
-import { DownloadIcon, ExternalLinkIcon, LogOutIcon } from "lucide-react";
+import { DownloadIcon } from "lucide-react";
 
 const initialState = {
   options: {
