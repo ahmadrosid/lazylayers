@@ -314,12 +314,12 @@ export default function ThumbnailPage() {
               }
             >
               <SelectTrigger>
-                <SelectValue placeholder="Line height" />
+                <SelectValue placeholder="Spacing" />
               </SelectTrigger>
               <SelectContent>
                 {config.options.tracking.map(([key, val]) => (
                   <SelectItem key={key} value={val}>
-                    {key}
+                    {key.split("-")[1]}
                   </SelectItem>
                 ))}
               </SelectContent>
