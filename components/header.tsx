@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { LayoutTemplate, PanelRight } from "lucide-react";
+import { LayoutTemplate } from "lucide-react";
 import Link from "next/link";
 
 export function Header() {

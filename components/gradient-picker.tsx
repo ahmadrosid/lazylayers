@@ -6,13 +6,14 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { gradients, textColors } from "@/lib/colors";
 import { cn } from "@/lib/utils";
 import { Paintbrush } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
 export function PickerExample() {
-  const [background, setBackground] = useState("#B4D455");
+  const [background, setBackground] = useState("");
 
   return (
     <div
@@ -25,49 +26,29 @@ export function PickerExample() {
 }
 
 export function GradientPicker({
+  label,
   background,
   setBackground,
   className,
 }: {
   background: string;
+  label?: string;
   setBackground: (background: string) => void;
   className?: string;
 }) {
-  const solids = [
-    "#E2E2E2",
-    "#ff75c3",
-    "#ffa647",
-    "#ffe83f",
-    "#9fff5b",
-    "#70e2ff",
-    "#cd93ff",
-    "#09203f",
-  ];
-
-  const gradients = [
-    "linear-gradient(to top left,#accbee,#e7f0fd)",
-    "linear-gradient(to top left,#d5d4d0,#d5d4d0,#eeeeec)",
-    "linear-gradient(to top left,#000000,#434343)",
-    "linear-gradient(to top left,#09203f,#537895)",
-    "linear-gradient(to top left,#AC32E4,#7918F2,#4801FF)",
-    "linear-gradient(to top left,#f953c6,#b91d73)",
-    "linear-gradient(to top left,#ee0979,#ff6a00)",
-    "linear-gradient(to top left,#F00000,#DC281E)",
-    "linear-gradient(to top left,#00c6ff,#0072ff)",
-    "linear-gradient(to top left,#4facfe,#00f2fe)",
-    "linear-gradient(to top left,#0ba360,#3cba92)",
-    "linear-gradient(to top left,#FDFC47,#24FE41)",
-    "linear-gradient(to top left,#8a2be2,#0000cd,#228b22,#ccff00)",
-    "linear-gradient(to top left,#40E0D0,#FF8C00,#FF0080)",
-    "linear-gradient(to top left,#fcc5e4,#fda34b,#ff7882,#c8699e,#7046aa,#0c1db8,#020f75)",
-    "linear-gradient(to top left,#ff75c3,#ffa647,#ffe83f,#9fff5b,#70e2ff,#cd93ff)",
-  ];
+  const solids = textColors;
 
   const images = [
-    "url(https://images.unsplash.com/photo-1691200099282-16fd34790ade?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2532&q=90)",
-    "url(https://images.unsplash.com/photo-1691226099773-b13a89a1d167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2532&q=90",
-    "url(https://images.unsplash.com/photo-1688822863426-8c5f9b257090?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2532&q=90)",
-    "url(https://images.unsplash.com/photo-1691225850735-6e4e51834cad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2532&q=90)",
+    "url(https://images.unsplash.com/photo-1691200099282-16fd34790ade?ixlib=rb-4.0.3&fit=crop&w=2532&q=90)",
+    "url(https://images.unsplash.com/photo-1688822863426-8c5f9b257090?ixlib=rb-4.0.3&fit=crop&w=2532&q=90)",
+    "url(https://images.unsplash.com/photo-1691225850735-6e4e51834cad?ixlib=rb-4.0.3&fit=crop&w=2532&q=90)",
+    "url(https://plus.unsplash.com/premium_photo-1664443577542-06294d3354ff?auto=format&fit=crop&q=80&w=2942&ixlib=rb-4.0.3&q=90)",
+    "url(https://images.unsplash.com/photo-1579546929662-711aa81148cf?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&q=90)",
+    "url(https://images.unsplash.com/photo-1635776062127-d379bfcba9f8?auto=format&fit=crop&q=80&w=2832&ixlib=rb-4.0.3&q=90)",
+    "url(https://images.unsplash.com/photo-1636990649778-fd699d27c875?auto=format&fit=crop&q=80&w=3028&ixlib=rb-4.0.3&q=90)",
+    "url(https://images.unsplash.com/photo-1619963258837-b83f3406cfcd?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&q=90)",
+    "url(https://images.unsplash.com/photo-1542736488-1967b42fcf54?auto=format&fit=crop&q=80&w=2603&ixlib=rb-4.0.3&q=90)",
+    "url(https://images.unsplash.com/photo-1542188422-1d5db412ecc3?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&q=90)",
   ];
 
   const defaultTab = useMemo(() => {
@@ -82,7 +63,7 @@ export function GradientPicker({
         <Button
           variant={"outline"}
           className={cn(
-            "w-[220px] justify-start text-left font-normal",
+            "justify-start text-left font-normal",
             !background && "text-muted-foreground",
             className
           )}
@@ -97,12 +78,12 @@ export function GradientPicker({
               <Paintbrush className="h-4 w-4" />
             )}
             <div className="truncate flex-1">
-              {background ? background : "Pick a color"}
+              {label ? label : "Pick a color"}
             </div>
           </div>
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-64">
+      <PopoverContent className="w-[332px]">
         <Tabs defaultValue={defaultTab} className="w-full">
           <TabsList className="w-full mb-4">
             <TabsTrigger className="flex-1" value="solid">
@@ -116,19 +97,24 @@ export function GradientPicker({
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="solid" className="flex flex-wrap gap-1 mt-0">
-            {solids.map((s) => (
-              <div
-                key={s}
-                style={{ background: s }}
-                className="rounded-md h-6 w-6 cursor-pointer active:scale-105"
-                onClick={() => setBackground(s)}
-              />
-            ))}
+          <TabsContent value="solid" className="mt-0">
+            <div className="flex flex-wrap gap-1 mb-2 max-h-[10rem] overflow-y-auto">
+              {solids.map((s) => (
+                <div
+                  key={s}
+                  style={{ background: s }}
+                  className="rounded-md h-6 w-6 cursor-pointer active:scale-105"
+                  onClick={() => setBackground(s)}
+                />
+              ))}
+            </div>
+            <GradientButton background={background}>
+              ⬆️ Custom color
+            </GradientButton>
           </TabsContent>
 
           <TabsContent value="gradient" className="mt-0">
-            <div className="flex flex-wrap gap-1 mb-2">
+            <div className="flex flex-wrap gap-1 mb-2 max-h-[10rem] overflow-y-auto">
               {gradients.map((s) => (
                 <div
                   key={s}
@@ -138,21 +124,13 @@ export function GradientPicker({
                 />
               ))}
             </div>
-
             <GradientButton background={background}>
-              💡 Get more at{" "}
-              <Link
-                href="https://gradient.page/css/ui-gradients"
-                className="hover:underline font-bold"
-                target="_blank"
-              >
-                Gradient Page
-              </Link>
+              ⬆️ Custom color
             </GradientButton>
           </TabsContent>
 
           <TabsContent value="image" className="mt-0">
-            <div className="grid grid-cols-2 gap-1 mb-2">
+            <div className="grid grid-cols-2 gap-1 mb-2 max-h-[10rem] pr-1 overflow-y-auto">
               {images.map((s) => (
                 <div
                   key={s}
@@ -164,14 +142,7 @@ export function GradientPicker({
             </div>
 
             <GradientButton background={background}>
-              🎁 Get abstract{" "}
-              <Link
-                href="https://gradient.page/wallpapers"
-                className="hover:underline font-bold"
-                target="_blank"
-              >
-                wallpapers
-              </Link>
+              ⬆️ Upload image
             </GradientButton>
           </TabsContent>
 
@@ -192,13 +163,16 @@ export function GradientPicker({
 const GradientButton = ({
   background,
   children,
+  onClick,
 }: {
   background: string;
   children: React.ReactNode;
+  onClick?: () => void;
 }) => {
   return (
     <div
-      className="p-0.5 rounded-md relative !bg-cover !bg-center transition-all"
+      onClick={onClick}
+      className="p-0.5 rounded-md relative !bg-cover !bg-center transition-all cursor-pointer"
       style={{ background }}
     >
       <div className="bg-popover/80 rounded-md p-1 text-xs text-center">

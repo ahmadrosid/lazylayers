@@ -11,7 +11,7 @@ export default function Home() {
       <div className="pb-16">
         <div className="pb-8">
           <h1 className="scroll-m-20 text-5xl font-bold tracking-tight max-w-xl">
-            Create thumbnail or carausle images faster.
+            Create thumbnail or caraousel images faster.
           </h1>
         </div>
         <Button>Get started</Button>
