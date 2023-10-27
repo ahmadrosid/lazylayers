@@ -202,7 +202,7 @@ export default function ThumbnailPage() {
             </div>
           </div>
         </div>
-        <div className="w-[20rem] h-[92vh] overflow-auto border-l bg-white">
+        <div className="w-[20rem] h-[92vh] overflow-y-auto border-l bg-white">
           <div className="p-1.5">
             <p
               className={buttonVariants({
