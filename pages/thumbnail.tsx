@@ -14,6 +14,7 @@ import uuid from "@/lib/uuid";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { GradientPicker } from "@/components/gradient-picker";
 import { Slider } from "@/components/ui/slider";
+import { DownloadIcon, ExternalLinkIcon, LogOutIcon } from "lucide-react";
 
 const initialState = {
   options: {
@@ -124,6 +125,18 @@ export default function ThumbnailPage() {
           rel="canonical"
           href={"https://lazylayers.ahmadrosid.com/thumbnail"}
         />
+        <meta property="og:url" content="https://lazylayers.ahmadrosid.com" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="LazyLayers - Thumbnail" />
+        <meta property="og:image:alt" content="LazyLayers - Thumbnail" />
+        <meta
+          property="og:description"
+          content="LazyLayers - Thumbnails Made Quicker Than Ever"
+        />
+        <meta
+          property="og:image"
+          content="https://res.cloudinary.com/dr15yjl8w/image/upload/v1698396814/7195172a903f4d9fa3eaf26f25c3ca37_z1mofb.png"
+        />
       </Head>
       <div className="flex">
         <div className="flex-1 max-h-screen relative">
@@ -137,8 +150,13 @@ export default function ThumbnailPage() {
               </div>
             </div>
             <div>
-              <Button size="sm" variant="ghost" className="font-bold">
-                Export as png
+              <Button
+                onClick={handleDownload}
+                size="sm"
+                variant="ghost"
+                className="font-bold"
+              >
+                <DownloadIcon className="w-4 h-4 mx-1" />
               </Button>
             </div>
           </div>
