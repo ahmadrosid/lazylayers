@@ -28,8 +28,7 @@ const initialState = {
     ],
   },
   background: {
-    color:
-      "url(https://images.unsplash.com/photo-1691200099282-16fd34790ade?ixlib=rb-4.0.3&fit=crop&w=2532&q=90)",
+    color: "linear-gradient(-225deg, #FF057C 0%, #8D0B93 50%, #321575 100%)",
     width: 1616,
     height: 848,
   },
@@ -41,7 +40,7 @@ const initialState = {
       text: "Thumbnails Made Quicker Than Ever",
       fontSize: 100,
       color: "white",
-      tracking: "-0.05em",
+      tracking: "-0.025em",
       lineHeight: "0.9",
       maxWidth: 90,
     },
