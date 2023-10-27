@@ -42,13 +42,13 @@ export function GradientPicker({
     "url(https://images.unsplash.com/photo-1691200099282-16fd34790ade?ixlib=rb-4.0.3&fit=crop&w=2532&q=90)",
     "url(https://images.unsplash.com/photo-1688822863426-8c5f9b257090?ixlib=rb-4.0.3&fit=crop&w=2532&q=90)",
     "url(https://images.unsplash.com/photo-1691225850735-6e4e51834cad?ixlib=rb-4.0.3&fit=crop&w=2532&q=90)",
-    "url(https://plus.unsplash.com/premium_photo-1664443577542-06294d3354ff?auto=format&fit=crop&q=80&w=2942&ixlib=rb-4.0.3&q=90)",
+    "url(https://plus.unsplash.com/premium_photo-1664443577542-06294d3354ff?auto=format&fit=crop&q=80&w=1616&ixlib=rb-4.0.3&q=90)",
     "url(https://images.unsplash.com/photo-1579546929662-711aa81148cf?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&q=90)",
     "url(https://images.unsplash.com/photo-1635776062127-d379bfcba9f8?auto=format&fit=crop&q=80&w=2832&ixlib=rb-4.0.3&q=90)",
-    "url(https://images.unsplash.com/photo-1636990649778-fd699d27c875?auto=format&fit=crop&q=80&w=3028&ixlib=rb-4.0.3&q=90)",
-    "url(https://images.unsplash.com/photo-1619963258837-b83f3406cfcd?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&q=90)",
-    "url(https://images.unsplash.com/photo-1542736488-1967b42fcf54?auto=format&fit=crop&q=80&w=2603&ixlib=rb-4.0.3&q=90)",
-    "url(https://images.unsplash.com/photo-1542188422-1d5db412ecc3?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&q=90)",
+    "url(https://images.unsplash.com/photo-1636990649778-fd699d27c875?ixlib=rb-4.0.3&fit=crop&w=1616&q=90)",
+    "url(https://images.unsplash.com/photo-1619963258837-b83f3406cfcd?ixlib=rb-4.0.3&fit=crop&w=1616&q=90)",
+    "url(https://images.unsplash.com/photo-1542736488-1967b42fcf54?auto=format&fit=crop&q=80&w=1616&ixlib=rb-4.0.3&q=90)",
+    "url(https://images.unsplash.com/photo-1542188422-1d5db412ecc3?auto=format&fit=crop&q=80&w=1616&ixlib=rb-4.0.3&q=90)",
   ];
 
   const defaultTab = useMemo(() => {
