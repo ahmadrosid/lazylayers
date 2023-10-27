@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Inter } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { PickerExample } from "@/components/gradient-picker";

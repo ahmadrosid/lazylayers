@@ -126,10 +126,15 @@ export default function ThumbnailPage() {
         />
       </Head>
       <div className="flex">
-        <div className="flex-1 max-h-screen">
-          <div className="p-1.5 flex border-b items-center">
+        <div className="flex-1 max-h-screen relative">
+          <div className="p-1.5 flex border-b items-center bg-white z-10 relative">
             <div className="flex-1 px-6">
-              <div>Frame size</div>
+              <div>
+                Frame size{" "}
+                <button className="text-sm border p-1.5 rounded-md">
+                  {config.background.width} x {config.background.height}
+                </button>
+              </div>
             </div>
             <div>
               <Button size="sm" variant="ghost" className="font-bold">
@@ -137,6 +142,7 @@ export default function ThumbnailPage() {
               </Button>
             </div>
           </div>
+          <div className="absolute z-0 inset-0 h-full w-full bg-gray-50 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
           <div className="overflow-hidden flex justify-center items-start p-8">
             <div
               ref={content}

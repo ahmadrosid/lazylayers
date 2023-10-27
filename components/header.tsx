@@ -22,10 +22,10 @@ export function Header() {
                   Thumbnail
                 </Button>
               </Link>
-              <Button size="sm" variant="ghost">
+              <Button size="sm" variant="ghost" className="opacity-30">
                 Carousel
               </Button>
-              <Button size="sm" variant="ghost">
+              <Button size="sm" variant="ghost" className="opacity-30">
                 Shots
               </Button>
             </div>
