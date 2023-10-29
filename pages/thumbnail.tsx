@@ -204,6 +204,7 @@ export default function ThumbnailPage() {
               className="w-full h-full p-6 grid place-content-center text-center relative rounded-[4px] transition-all"
               style={{
                 background: config.background.color,
+                backgroundSize: "contain",
                 height: "auto",
                 aspectRatio: config.background.aspectRatio,
               }}
