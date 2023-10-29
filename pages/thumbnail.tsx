@@ -16,6 +16,17 @@ import { GradientPicker } from "@/components/gradient-picker";
 import { Slider } from "@/components/ui/slider";
 import { DownloadIcon } from "lucide-react";
 
+const ratios = [
+  {
+    label: "Open Graph",
+    value: "1.90476 / 1",
+  },
+  {
+    label: "YouTube",
+    value: "16 / 9",
+  },
+];
+
 const initialState = {
   options: {
     tracking: [
@@ -31,6 +42,7 @@ const initialState = {
     color: "linear-gradient(-225deg, #FF057C 0%, #8D0B93 50%, #321575 100%)",
     width: 1616,
     height: 848,
+    aspectRatio: ratios[0].value,
   },
   frame: {
     backgroundColor: "#0052525b",
@@ -99,6 +111,14 @@ const configReducer = (state: typeof initialState, action: any) => {
           },
         },
       };
+    case "UPDATE_FRAME_SIZE":
+      return {
+        ...state,
+        background: {
+          ...state.background,
+          aspectRatio: action.payload.value,
+        },
+      };
     default:
       return state;
   }
@@ -141,11 +161,29 @@ export default function ThumbnailPage() {
         <div className="flex-1 max-h-screen relative">
           <div className="p-1.5 flex border-b items-center bg-white z-10 relative">
             <div className="flex-1 px-6">
-              <div>
-                Frame size{" "}
-                <button className="text-sm border p-1.5 rounded-md">
-                  {config.background.width} x {config.background.height}
-                </button>
+              <div className="flex items-center gap-2">
+                Frame size
+                <Select
+                  onValueChange={(val) =>
+                    dispatch({
+                      type: "UPDATE_FRAME_SIZE",
+                      payload: {
+                        value: val,
+                      },
+                    })
+                  }
+                >
+                  <SelectTrigger className="w-[180px] h-8 px-2">
+                    <SelectValue placeholder="Frame size" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {ratios.map((item) => (
+                      <SelectItem key={item.value} value={item.value}>
+                        {item.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
             </div>
             <div>
@@ -167,7 +205,7 @@ export default function ThumbnailPage() {
               style={{
                 background: config.background.color,
                 height: "auto",
-                aspectRatio: "1.90476 / 1",
+                aspectRatio: config.background.aspectRatio,
               }}
             >
               {/* <div

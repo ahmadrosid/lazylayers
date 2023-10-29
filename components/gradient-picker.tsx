@@ -9,7 +9,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { gradients, textColors } from "@/lib/colors";
 import { cn } from "@/lib/utils";
 import { Paintbrush } from "lucide-react";
-import Link from "next/link";
 import { useMemo, useState } from "react";
 
 export function PickerExample() {
@@ -174,9 +173,20 @@ export function GradientPicker({
               ))}
             </div>
 
-            <GradientButton background={background}>
-              ⬆️ Upload image
-            </GradientButton>
+            <div
+              className="p-0.5 rounded-md relative !bg-cover !bg-center transition-all cursor-pointer"
+              style={{ background }}
+            >
+              {/* <div className="bg-popover/80 rounded-md p-1 text-xs text-center">
+                ⬆️ Upload image
+              </div> */}
+              <Input
+                type="file"
+                onChange={(e) => {
+                  console.log(e);
+                }}
+              />
+            </div>
           </TabsContent>
 
           <TabsContent value="password">Change your password here.</TabsContent>
