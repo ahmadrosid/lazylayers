@@ -73,6 +73,10 @@ export default function Home() {
         JSON.stringify(updatedThumbnails)
       );
 
+      if (searchParams.get("url")) {
+        window.location.href = "/collections";
+      }
+
       return updatedThumbnails;
     });
   };
@@ -95,8 +99,11 @@ export default function Home() {
 
   useEffect(() => {
     const url = searchParams.get("url");
-    const isSaved = thumbnails.filter((thumbnail) => thumbnail.src === url);
-    if (url && isSaved.length === 0) {
+    if (!url) return;
+
+    const isSaved = thumbnails.filter((thumbnail) => thumbnail.url === url);
+    console.log(isSaved);
+    if (isSaved.length === 0) {
       setInputUrl(url);
       setTimeout(() => {
         handleSaveThumbnail();
