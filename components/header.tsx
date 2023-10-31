@@ -22,6 +22,11 @@ export function Header() {
                   Thumbnail
                 </Button>
               </Link>
+              <Link href={"/collections"}>
+                <Button size="sm" variant="ghost">
+                  Collections
+                </Button>
+              </Link>
               <Button size="sm" variant="ghost" className="opacity-30">
                 Carousel
               </Button>
