@@ -104,7 +104,7 @@ export default function Home() {
         setInputUrl(url);
         setTimeout(() => {
           handleSaveThumbnail();
-        }, 400);
+        }, 600);
       }
     }
   }, [thumbnails, searchParams, handleSaveThumbnail]);
