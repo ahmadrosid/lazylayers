@@ -58,13 +58,10 @@ export default function Home() {
 
       window.localStorage.setItem("saved-thumbnails", JSON.stringify(newData));
       setInputUrl("");
-      if (searchParams.get("url")) {
-        window.location.href = "/collections";
-      }
 
       return newData;
     });
-  }, [inputUrl, searchParams]);
+  }, [inputUrl]);
 
   const handleDelete = (src: string) => {
     setThumbnails((prev) => {
@@ -98,14 +95,12 @@ export default function Home() {
 
   useEffect(() => {
     const url = searchParams.get("url");
-    if (url) {
-      const isSaved = thumbnails.filter((thumbnail) => thumbnail.src === url);
-      if (isSaved.length === 0) {
-        setInputUrl(url);
-        setTimeout(() => {
-          handleSaveThumbnail();
-        }, 600);
-      }
+    const isSaved = thumbnails.filter((thumbnail) => thumbnail.src === url);
+    if (url && isSaved.length === 0) {
+      setInputUrl(url);
+      setTimeout(() => {
+        handleSaveThumbnail();
+      }, 600);
     }
   }, [thumbnails, searchParams, handleSaveThumbnail]);
 
