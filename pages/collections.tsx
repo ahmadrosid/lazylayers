@@ -3,7 +3,8 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ExternalLink, HardDriveDownload, TrashIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 const inter = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
@@ -29,8 +30,11 @@ const getYoutubeVideoId = (url: string) => {
 export default function Home() {
   const [thumbnails, setThumbnails] = useState<Thumbnail[]>([]);
   const [inputUrl, setInputUrl] = useState<string>("");
+  const [bookmarklet, setBookmarklet] = useState<string>("");
 
-  const handeSaveThumbnail = () => {
+  const searchParams = useSearchParams();
+
+  const handeSaveThumbnail = useCallback(() => {
     if (inputUrl === "") return;
 
     setThumbnails((prev) => {
@@ -49,10 +53,13 @@ export default function Home() {
 
       window.localStorage.setItem("saved-thumbnails", JSON.stringify(newData));
       setInputUrl("");
+      if (searchParams.get("url")) {
+        window.location.href = "/collections";
+      }
 
       return newData;
     });
-  };
+  }, [inputUrl, searchParams]);
 
   const handleDelete = (src: string) => {
     setThumbnails((prev) => {
@@ -73,7 +80,29 @@ export default function Home() {
     if (savedData) {
       setThumbnails(JSON.parse(savedData));
     }
+
+    const origin = window.location.origin;
+    if (origin) {
+      setBookmarklet(
+        `<a href="javascript:window.location='${window.location.origin}/collections?url='+encodeURIComponent(document.location)">
+    Save thumbnail
+  </a>`
+      );
+    }
   }, []);
+
+  useEffect(() => {
+    const url = searchParams.get("url");
+    if (url) {
+      const isSaved = thumbnails.filter((thumbnail) => thumbnail.src === url);
+      if (isSaved.length === 0) {
+        setInputUrl(url);
+        setTimeout(() => {
+          handeSaveThumbnail();
+        }, 400);
+      }
+    }
+  }, [thumbnails, searchParams, handeSaveThumbnail]);
 
   return (
     <main className={`${inter.className} container mx-auto py-8`}>
@@ -85,6 +114,11 @@ export default function Home() {
           <p className="pt-2">
             Collect inspiring thumbnail from any YoutTube link.
           </p>
+
+          <div
+            className="flex-shrink-0 hover:underline cursor-pointer pt-1 underline"
+            dangerouslySetInnerHTML={{ __html: bookmarklet }}
+          />
         </div>
         <div className="flex justify-start items-center gap-2">
           <Input
