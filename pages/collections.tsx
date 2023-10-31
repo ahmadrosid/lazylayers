@@ -2,7 +2,12 @@
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ExternalLink, HardDriveDownload, TrashIcon } from "lucide-react";
+import {
+  ExternalLink,
+  HardDriveDownload,
+  TagIcon,
+  TrashIcon,
+} from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
@@ -151,15 +156,24 @@ export default function Home() {
                   target="_blank"
                   className="inline-flex items-center text-sm pt-2 hover:underline"
                 >
-                  Open in YouTube
+                  Open in Youtube
                   <ExternalLink className="w-3 h-3 ml-2" />
                 </a>
-                <button
-                  onClick={() => handleDelete(item.src)}
-                  className="text-xs flex gap-2 items-center bg-rose-500 text-white rounded px-2 py-1.5"
-                >
-                  <TrashIcon className="w-3 h-3" /> Delete
-                </button>
+                <span className="inline-flex gap-1.5">
+                  {/* <a
+                    href={item.url}
+                    target="_blank"
+                    className="text-xs flex gap-2 items-center bg-sky-500 hover:bg-sky-600 text-white rounded px-2 py-1.5"
+                  >
+                    <ExternalLink className="w-3 h-3" />
+                  </a> */}
+                  <button
+                    onClick={() => handleDelete(item.src)}
+                    className="text-xs flex gap-2 items-center bg-rose-500 hover:bg-rose-600 text-white rounded px-2 py-1.5"
+                  >
+                    <TrashIcon className="w-3 h-3" /> Delete
+                  </button>
+                </span>
               </p>
             </div>
           ))}
