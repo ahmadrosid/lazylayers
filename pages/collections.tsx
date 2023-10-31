@@ -2,7 +2,7 @@
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ExternalLink, HardDriveDownload } from "lucide-react";
+import { ExternalLink, HardDriveDownload, TrashIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const inter = Plus_Jakarta_Sans({ subsets: ["latin"] });
@@ -27,13 +27,13 @@ const getYoutubeVideoId = (url: string) => {
 };
 
 export default function Home() {
-  const [thumbnails, setTumbnails] = useState<Thumbnail[]>([]);
+  const [thumbnails, setThumbnails] = useState<Thumbnail[]>([]);
   const [inputUrl, setInputUrl] = useState<string>("");
 
   const handeSaveThumbnail = () => {
     if (inputUrl === "") return;
 
-    setTumbnails((prev) => {
+    setThumbnails((prev) => {
       const videoId = getYoutubeVideoId(inputUrl);
       if (videoId === null) return prev;
 
@@ -48,17 +48,30 @@ export default function Home() {
       ];
 
       window.localStorage.setItem("saved-thumbnails", JSON.stringify(newData));
-      //   window.localStorage.setItem("saved-thumbnails", "");
       setInputUrl("");
 
       return newData;
     });
   };
 
+  const handleDelete = (src: string) => {
+    setThumbnails((prev) => {
+      const updatedThumbnails = prev.filter(
+        (thumbnail) => thumbnail.src !== src
+      );
+      window.localStorage.setItem(
+        "saved-thumbnails",
+        JSON.stringify(updatedThumbnails)
+      );
+
+      return updatedThumbnails;
+    });
+  };
+
   useEffect(() => {
     const savedData = window.localStorage.getItem("saved-thumbnails");
     if (savedData) {
-      setTumbnails(JSON.parse(savedData));
+      setThumbnails(JSON.parse(savedData));
     }
   }, []);
 
@@ -69,6 +82,9 @@ export default function Home() {
           <h1 className="scroll-m-20 text-3xl font-extrabold tracking-tighter max-w-4xl">
             Save Thumbnail
           </h1>
+          <p className="pt-2">
+            Collect inspiring thumbnail from any YoutTube link.
+          </p>
         </div>
         <div className="flex justify-start items-center gap-2">
           <Input
@@ -86,23 +102,35 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#f8fafc,transparent)]"></div>
       </div>
 
-      <div className="grid grid-cols-4 gap-4 my-4 bg-white p-4 border rounded">
-        {thumbnails.map((item) => (
-          <div key={item.src} className="">
-            <img src={item.src} alt={item.src} className="rounded-md border" />
-            <p>
-              <a
-                href={item.url}
-                target="_blank"
-                className="inline-flex items-center text-sm pt-2 hover:underline"
-              >
-                Open in youtube
-                <ExternalLink className="w-3 h-3 ml-2" />
-              </a>
-            </p>
-          </div>
-        ))}
-      </div>
+      {thumbnails.length > 0 && (
+        <div className="grid grid-cols-4 gap-4 my-4 bg-white p-4 border rounded">
+          {thumbnails.map((item) => (
+            <div key={item.src} className="">
+              <img
+                src={item.src}
+                alt={item.src}
+                className="rounded-md border"
+              />
+              <p className="flex justify-between items-center py-2">
+                <a
+                  href={item.url}
+                  target="_blank"
+                  className="inline-flex items-center text-sm pt-2 hover:underline"
+                >
+                  Open in YouTube
+                  <ExternalLink className="w-3 h-3 ml-2" />
+                </a>
+                <button
+                  onClick={() => handleDelete(item.src)}
+                  className="text-xs flex gap-2 items-center bg-rose-500 text-white rounded px-2 py-1.5"
+                >
+                  <TrashIcon className="w-3 h-3" /> Delete
+                </button>
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
     </main>
   );
 }
