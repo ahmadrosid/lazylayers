@@ -48,12 +48,12 @@ export default function Home() {
 
       const parsedUrl = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
       const newData = [
-        ...prev,
         {
           source: "youtube",
           src: parsedUrl,
           url: `https://www.youtube.com/watch?v=${videoId}`,
         } as Thumbnail,
+        ...prev,
       ];
 
       window.localStorage.setItem("saved-thumbnails", JSON.stringify(newData));
