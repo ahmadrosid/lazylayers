@@ -34,7 +34,7 @@ export default function Home() {
 
   const searchParams = useSearchParams();
 
-  const handeSaveThumbnail = useCallback(() => {
+  const handleSaveThumbnail = useCallback(() => {
     if (inputUrl === "") return;
 
     setThumbnails((prev) => {
@@ -98,11 +98,11 @@ export default function Home() {
       if (isSaved.length === 0) {
         setInputUrl(url);
         setTimeout(() => {
-          handeSaveThumbnail();
+          handleSaveThumbnail();
         }, 400);
       }
     }
-  }, [thumbnails, searchParams, handeSaveThumbnail]);
+  }, [thumbnails, searchParams, handleSaveThumbnail]);
 
   return (
     <main className={`${inter.className} container mx-auto py-8`}>
@@ -127,7 +127,7 @@ export default function Home() {
             value={inputUrl}
             onChange={(e) => setInputUrl(e.currentTarget.value)}
           />
-          <Button onClick={handeSaveThumbnail}>
+          <Button onClick={handleSaveThumbnail}>
             <HardDriveDownload className="w-4 h-5 mr-2" /> Save
           </Button>
         </div>
