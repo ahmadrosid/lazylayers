@@ -242,6 +242,10 @@ export const gradients = presets.map((item: GradientColor) =>
   parseGradient(item)
 );
 
+gradients.push(
+  "conic-gradient(from 15deg, red, orange, yellow, green, indigo, blue, violet, red)"
+);
+
 export const getTransparentValue = (alpha: number): string => {
   if (alpha > 1 || alpha < 0 || isNaN(alpha)) {
     return "00";
