@@ -144,7 +144,10 @@ export default function ThumbnailPage() {
           rel="canonical"
           href={"https://lazylayers.ahmadrosid.com/thumbnail"}
         />
-        <meta property="og:url" content="https://lazylayers.ahmadrosid.com" />
+        <meta
+          property="og:url"
+          content="https://lazylayers.ahmadrosid.com/thumbnail"
+        />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="LazyLayers - Thumbnail" />
         <meta property="og:image:alt" content="LazyLayers - Thumbnail" />
