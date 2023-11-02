@@ -147,9 +147,9 @@ export function GradientPicker({
 
           <TabsContent value="gradient" className="mt-0">
             <div className="flex flex-wrap gap-1 mb-2 max-h-[10rem] overflow-y-auto">
-              {gradients.map((s) => (
+              {gradients.map((s, index) => (
                 <div
-                  key={s}
+                  key={index}
                   style={{ background: s }}
                   className="rounded-md h-6 w-6 cursor-pointer active:scale-105"
                   onClick={() => setBackground(s)}
@@ -163,9 +163,9 @@ export function GradientPicker({
 
           <TabsContent value="image" className="mt-0">
             <div className="grid grid-cols-2 gap-1 mb-2 max-h-[10rem] pr-1 overflow-y-auto">
-              {images.map((s) => (
+              {images.map((s, index) => (
                 <div
-                  key={s}
+                  key={index}
                   style={{ backgroundImage: s }}
                   className="rounded-md bg-cover bg-center h-12 w-full cursor-pointer active:scale-105"
                   onClick={() => setBackground(s)}

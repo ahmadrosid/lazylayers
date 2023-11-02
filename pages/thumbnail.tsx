@@ -201,7 +201,7 @@ export default function ThumbnailPage() {
             </div>
           </div>
           <div className="absolute z-0 inset-0 h-full w-full bg-gray-50 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-          <div className="overflow-hidden flex justify-center items-start p-8">
+          <div className="overflow-hidden bg-white flex justify-center items-start p-8">
             <div
               ref={content}
               className="w-full h-full p-6 grid place-content-center text-center relative rounded-[4px] transition-all"
