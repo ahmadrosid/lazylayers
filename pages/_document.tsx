@@ -15,6 +15,11 @@ export default function Document() {
         <Header />
         <Main />
         <NextScript />
+        <script
+          defer
+          data-domain="lazylayers.ahmadrosid.com"
+          src="https://plausible.kasihkode.com/js/script.js"
+        ></script>
       </body>
     </Html>
   );
