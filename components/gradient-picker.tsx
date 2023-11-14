@@ -10,11 +10,7 @@ import { gradients, textColors } from "@/lib/colors";
 import { cn } from "@/lib/utils";
 import { Paintbrush } from "lucide-react";
 import { useMemo, useState } from "react";
-import {
-  SketchPicker,
-  MaterialPicker,
-  GooglePicker,
-} from "@hello-pangea/color-picker";
+import { SketchPicker } from "@hello-pangea/color-picker";
 
 export function PickerExample() {
   const [background, setBackground] = useState("");
