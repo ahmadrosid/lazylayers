@@ -10,6 +10,11 @@ import { gradients, textColors } from "@/lib/colors";
 import { cn } from "@/lib/utils";
 import { Paintbrush } from "lucide-react";
 import { useMemo, useState } from "react";
+import {
+  SketchPicker,
+  MaterialPicker,
+  GooglePicker,
+} from "@hello-pangea/color-picker";
 
 export function PickerExample() {
   const [background, setBackground] = useState("");
@@ -140,11 +145,32 @@ export function GradientPicker({
                 />
               ))}
             </div>
-            <GradientButton background={background}>
-              ⬆️ Custom color
-            </GradientButton>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  size="sm"
+                  className="w-full text-white"
+                  variant={"outline"}
+                  style={{ background }}
+                >
+                  Select custom color
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent
+                align="start"
+                className="border-none shadow-none p-0 m-0 bg-transparent"
+              >
+                <SketchPicker
+                  onChange={(color) =>
+                    setBackground(
+                      `rgb(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b}, ${color.rgb.a})`
+                    )
+                  }
+                  defaultColor={background}
+                />
+              </PopoverContent>
+            </Popover>
           </TabsContent>
-
           <TabsContent value="gradient" className="mt-0">
             <div className="flex flex-wrap gap-1 mb-2 max-h-[10rem] overflow-y-auto">
               {gradients.map((s, index) => (
@@ -156,9 +182,31 @@ export function GradientPicker({
                 />
               ))}
             </div>
-            <GradientButton background={background}>
-              ⬆️ Custom color
-            </GradientButton>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  size="sm"
+                  className="w-full text-white"
+                  variant={"outline"}
+                  style={{ background }}
+                >
+                  Select custom color
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent
+                align="start"
+                className="border-none shadow-none p-0 m-0 bg-transparent"
+              >
+                <SketchPicker
+                  onChange={(color) =>
+                    setBackground(
+                      `rgb(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b}, ${color.rgb.a})`
+                    )
+                  }
+                  defaultColor={background}
+                />
+              </PopoverContent>
+            </Popover>
           </TabsContent>
 
           <TabsContent value="image" className="mt-0">
@@ -202,25 +250,3 @@ export function GradientPicker({
     </Popover>
   );
 }
-
-const GradientButton = ({
-  background,
-  children,
-  onClick,
-}: {
-  background: string;
-  children: React.ReactNode;
-  onClick?: () => void;
-}) => {
-  return (
-    <div
-      onClick={onClick}
-      className="p-0.5 rounded-md relative !bg-cover !bg-center transition-all cursor-pointer"
-      style={{ background }}
-    >
-      <div className="bg-popover/80 rounded-md p-1 text-xs text-center">
-        {children}
-      </div>
-    </div>
-  );
-};
