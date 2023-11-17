@@ -46,6 +46,7 @@ const initialState = {
   },
   frame: {
     backgroundColor: "#0052525b",
+    inset: "20px",
   },
   content: {
     title: {
@@ -80,6 +81,7 @@ const configReducer = (state: typeof initialState, action: any) => {
         frame: {
           ...state.frame,
           backgroundColor: action.payload.backgroundColor,
+          inset: action.payload.inset,
         },
       };
     case "UPDATE_TITLE":
@@ -220,9 +222,10 @@ export default function ThumbnailPage() {
                 }}
               ></div> */}
               <div
-                className="absolute inset-8 rounded-lg z-20 shadow-lg"
+                className="absolute rounded-lg z-20 shadow-lg"
                 style={{
                   background: config.frame.backgroundColor,
+                  inset: config.frame.inset,
                 }}
               ></div>
               <div className="p-8 z-50">
@@ -329,6 +332,23 @@ export default function ThumbnailPage() {
               step={1}
             />
           </div>
+          <div className="space-y-3 border-b w-full p-4">
+            <p className="text-sm">Frame size</p>
+            <Slider
+              onValueChange={(val) =>
+                dispatch({
+                  type: "UPDATE_FRAME",
+                  payload: {
+                    ...config.frame,
+                    inset: `${val}px`,
+                  },
+                })
+              }
+              defaultValue={[+config.frame.inset.replace("px", "")]}
+              max={100}
+              step={1}
+            />
+          </div>
           <div className="py-4 px-4 border-b grid grid-cols-2 gap-2">
             <GradientPicker
               background={config.content.title.color}
@@ -395,6 +415,7 @@ export default function ThumbnailPage() {
                 dispatch({
                   type: "UPDATE_FRAME",
                   payload: {
+                    ...config.frame,
                     backgroundColor: val,
                   },
                 })
