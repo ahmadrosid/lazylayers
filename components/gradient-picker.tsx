@@ -52,6 +52,7 @@ export function GradientPicker({
   // ];
 
   const images = [
+    "url(/images/noise-light.png)",
     "url(/images/background/vibrant-vista-001.jpg)",
     "url(/images/background/vibrant-vista-002.jpg)",
     "url(/images/background/vibrant-vista-003.jpg)",
@@ -211,7 +212,7 @@ export function GradientPicker({
                 <div
                   key={index}
                   style={{ backgroundImage: s }}
-                  className="rounded-md bg-cover bg-center h-12 w-full cursor-pointer active:scale-105"
+                  className="border rounded-md bg-cover bg-center h-12 w-full cursor-pointer active:scale-105"
                   onClick={() => setBackground(s)}
                 />
               ))}
