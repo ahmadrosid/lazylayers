@@ -45,8 +45,8 @@ const initialState = {
     aspectRatio: ratios[0].value,
   },
   frame: {
-    backgroundColor: "#0052525b",
-    inset: "20px",
+    backgroundColor: "url(/images/noise-light.png)",
+    inset: "0px",
   },
   content: {
     title: {
