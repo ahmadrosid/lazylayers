@@ -3,12 +3,9 @@ import { DownloadIcon } from "lucide-react";
 import Head from "next/head";
 import * as htmlToImage from "html-to-image";
 import { saveAs } from "file-saver";
-import { useReducer, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import uuid from "@/lib/uuid";
 import Fuse from 'fuse.js';
-import twemoji from "@/lib/data/twemoji.json";
-import fxemoji from "@/lib/data/fxemoji.json";
-import heroicons from "@/lib/data/heroicons.json";
 import { GradientPicker } from "@/components/gradient-picker";
 import { Input } from "@/components/ui/input";
 
@@ -16,19 +13,17 @@ const getRandomNumber = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-const emojis = twemoji.concat(fxemoji).concat(heroicons); // from iconsets: https://github.com/iconify/icon-sets
-const totalEmoji = emojis.length;
-const fuse = new Fuse(emojis, { keys: ["key"] });
-const randomIdx = getRandomNumber(0, totalEmoji-1);
+type Emoji = {
+  key: string;
+  url: string;
+}
 
 export default function Logo() {
   const [filename, setFilename] = useState(uuid().split("-").join(""));
   const [background, setBackground] = useState("#475569");
+  const [fuse, setFuse] = useState<Fuse<Emoji>|undefined>();
   const [searchResult, setSearchResult] = useState<{url: string, key: string}[]>([]);
-  const [emoji, setEmoji] = useState({
-    url: emojis[randomIdx].url,
-    key: emojis[randomIdx].key
-  })
+  const [emoji, setEmoji] = useState<Emoji|undefined>()
 
   const iconRadius = 45;
 
@@ -39,6 +34,20 @@ export default function Logo() {
       saveAs(dataUrl, `${filename}.png`);
     });
   };
+
+  useEffect(() => {
+    async function loadEmojis() {
+      const module = await import('@/lib/data/emojis.json') as Emoji[];
+      const emojis = Object.entries(module).slice(0, 10).map(item => item[1]);
+      const totalEmoji = emojis.length;
+      const randomIdx = getRandomNumber(0, totalEmoji-1);
+      const fuse = new Fuse(emojis, { keys: ["key"] });
+      setEmoji(emojis[randomIdx]);
+      setFuse(fuse);
+    }
+
+    loadEmojis();
+  }, []);
 
   return (
     <>
@@ -93,8 +102,8 @@ export default function Logo() {
                 }}
               >
                 <img
-                  src={emoji.url}
-                  alt={emoji.key}
+                  src={emoji ? emoji.url : ""}
+                  alt={emoji ? emoji.key : ""}
                   className="w-auto h-auto p-8"
                 />
               </div>
@@ -146,9 +155,11 @@ export default function Logo() {
             </p>
             <div className="px-2 pt-1">
               <Input placeholder="Search icon name" onChange={(e) => {
+                if (!fuse) {
+                  return;
+                }
                 const result = fuse.search(e.target.value);
                 setSearchResult(result.map(item => item.item).slice(0, 20))
-                // setSearchResult(result.map((item) => item.item));
               }}/>
               <div className="py-4 grid grid-cols-4 gap-1 overflow-hidden h-[58vh]">
                 {searchResult.map(item =>(
