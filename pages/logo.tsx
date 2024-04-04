@@ -8,6 +8,8 @@ import uuid from "@/lib/uuid";
 import Fuse from 'fuse.js';
 import { GradientPicker } from "@/components/gradient-picker";
 import { Input } from "@/components/ui/input";
+import { Slider } from "@/components/ui/slider";
+import { Badge } from "@/components/ui/badge";
 
 const getRandomNumber = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min) + min);
@@ -24,8 +26,7 @@ export default function Logo() {
   const [fuse, setFuse] = useState<Fuse<Emoji>|undefined>();
   const [searchResult, setSearchResult] = useState<{url: string, key: string}[]>([]);
   const [emoji, setEmoji] = useState<Emoji|undefined>()
-
-  const iconRadius = 45;
+  const [iconRadius, setIconRadius] = useState(45);
 
   const content = useRef<HTMLDivElement>(null);
   const handleDownload = () => {
@@ -142,6 +143,20 @@ export default function Logo() {
                   className="w-full"
                   setBackground={(val) => setBackground(val)}
                 />
+            </div>
+          </div>
+
+          <div className="p-4 border-b">
+            <div className="space-y-4">
+              <div className="text-sm flex-1">Radius <Badge variant={"secondary"}>{iconRadius}px</Badge></div>
+              <Slider
+                onValueChange={(val) =>
+                  setIconRadius(val[0])
+                }
+                defaultValue={[iconRadius]}
+                max={200}
+                step={1}
+              />
             </div>
           </div>
 
