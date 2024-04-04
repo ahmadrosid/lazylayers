@@ -22,6 +22,11 @@ export function Header() {
                   Thumbnail
                 </Button>
               </Link>
+              <Link href={"/logo"}>
+                <Button size="sm" variant="ghost">
+                  Logo
+                </Button>
+              </Link>
               <Link href={"/collections"}>
                 <Button size="sm" variant="ghost">
                   Collections
