@@ -8,13 +8,14 @@ import uuid from "@/lib/uuid";
 import Fuse from 'fuse.js';
 import twemoji from "@/lib/data/twemoji.json";
 import fxemoji from "@/lib/data/fxemoji.json";
+import heroicons from "@/lib/data/heroicons.json";
 import { GradientPicker } from "@/components/gradient-picker";
 import { Input } from "@/components/ui/input";
 
 const getRandomNumber = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min) + min);
 }
-const emojis = twemoji.concat(fxemoji); // from iconsets: https://github.com/iconify/icon-sets
+const emojis = twemoji.concat(fxemoji).concat(heroicons); // from iconsets: https://github.com/iconify/icon-sets
 const totalEmoji = emojis.length;
 const fuse = new Fuse(emojis, { keys: ["key"] });
 
