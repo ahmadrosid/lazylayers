@@ -15,14 +15,15 @@ import { Input } from "@/components/ui/input";
 const getRandomNumber = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min) + min);
 }
+
 const emojis = twemoji.concat(fxemoji).concat(heroicons); // from iconsets: https://github.com/iconify/icon-sets
 const totalEmoji = emojis.length;
 const fuse = new Fuse(emojis, { keys: ["key"] });
+const randomIdx = getRandomNumber(0, totalEmoji-1);
 
 export default function Logo() {
   const [filename, setFilename] = useState(uuid().split("-").join(""));
   const [background, setBackground] = useState("#475569");
-  const [randomIdx, setRandomIndex] = useState(getRandomNumber(0, totalEmoji-1));
   const [searchResult, setSearchResult] = useState<{url: string, key: string}[]>([]);
   const [emoji, setEmoji] = useState({
     url: emojis[randomIdx].url,
