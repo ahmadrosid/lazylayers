@@ -46,7 +46,7 @@ export default function Logo() {
       setFuse(fuse);
     }
 
-    if (fuse) {
+    if (!fuse) {
       loadEmojis();
     }
   }, []);
