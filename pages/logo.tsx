@@ -37,8 +37,8 @@ export default function Logo() {
 
   useEffect(() => {
     async function loadEmojis() {
-      const module = await import('@/lib/data/emojis.json') as Emoji[];
-      const emojis = Object.entries(module).slice(0, 10).map(item => item[1]);
+      const data = await import('@/lib/data/emojis.json') as Emoji[];
+      const emojis = Object.entries(data).slice(0, 10).map(item => item[1]);
       const totalEmoji = emojis.length;
       const randomIdx = getRandomNumber(0, totalEmoji-1);
       const fuse = new Fuse(emojis, { keys: ["key"] });
