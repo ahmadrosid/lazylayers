@@ -27,6 +27,7 @@ export default function Logo() {
   const [searchResult, setSearchResult] = useState<{url: string, key: string}[]>([]);
   const [emoji, setEmoji] = useState<Emoji|undefined>()
   const [iconRadius, setIconRadius] = useState(45);
+  const [padding, setPadding] = useState(34);
 
   const content = useRef<HTMLDivElement>(null);
   const handleDownload = () => {
@@ -107,7 +108,8 @@ export default function Logo() {
                 <img
                   src={emoji ? emoji.url : ""}
                   alt={emoji ? emoji.key : ""}
-                  className="w-auto h-auto p-8"
+                  style={{ padding: padding}}
+                  className="w-auto h-auto"
                 />
               </div>
             </div>
@@ -143,6 +145,20 @@ export default function Logo() {
                   className="w-full"
                   setBackground={(val) => setBackground(val)}
                 />
+            </div>
+          </div>
+
+          <div className="p-4 border-b">
+            <div className="space-y-4">
+              <div className="text-sm flex-1">Padding <Badge variant={"secondary"}>{padding}px</Badge></div>
+              <Slider
+                onValueChange={(val) =>
+                  setPadding(val[0])
+                }
+                defaultValue={[padding]}
+                max={200}
+                step={1}
+              />
             </div>
           </div>
 
