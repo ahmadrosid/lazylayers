@@ -83,6 +83,15 @@ export function GradientPicker({
     "url(/images/background/pretty-in-pink-004.jpg)",
     "url(/images/background/pretty-in-pink-005.jpg)",
     "url(/images/background/pretty-in-pink-006.jpg)",
+    "url(/images/background/nature.jpg)",
+    "url(/images/background/abstract.jpg)",
+    "url(/images/background/yellow.jpg)",
+    "url(/images/background/gradient.jpg)",
+    "url(/images/background/new.jpg)",
+    "url(/images/background/material.jpg)",
+    "url(/images/background/board.jpg)",
+    "url(/images/background/light.jpg)",
+    "url(/images/background/cool.jpg)"
   ];
 
   const defaultTab = useMemo(() => {
