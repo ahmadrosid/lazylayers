@@ -276,23 +276,25 @@ export default function ThumbnailPage() {
             />
           </div>
           <div className="p-4 border-b">
-            <div className="h-8 flex justify-between items-center w-full">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
               <div className="text-sm flex-1">Font size</div>
-              <input
-                className="p-2 bg-white rounded border text-sm"
-                placeholder="Font size"
-                type="number"
-                name="content_text_font_size"
-                value={config.content.title.fontSize}
-                onChange={(e) =>
+              <div className="text-sm opacity-50">{config.content.title.fontSize}</div>
+              </div>
+              <Slider
+                onValueChange={(val) =>
                   dispatch({
                     type: "UPDATE_TITLE",
                     payload: {
                       ...config.content.title,
-                      fontSize: Number(e.currentTarget.value),
+                      fontSize: val[0],
                     },
                   })
                 }
+                defaultValue={[config.content.title.fontSize]}
+                min={12}
+                max={200}
+                step={1}
               />
             </div>
           </div>
