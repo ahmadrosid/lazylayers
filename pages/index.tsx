@@ -70,7 +70,7 @@ export default function Home() {
             transition={{ duration: 0.7, delay: 0.6 }}
             className="flex justify-center items-center gap-4 mb-12"
           >
-            <Link href="/thumbnail">
+            <Link href="/shots">
               <Button 
                 size="lg" 
                 className="text-lg px-8 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
@@ -115,9 +115,9 @@ export default function Home() {
                 description: "Create stunning thumbnails in seconds with our intuitive drag-and-drop editor."
               },
               {
-                icon: "💫",
-                title: "No Skills Needed",
-                description: "Perfect for content creators who want professional results without the learning curve."
+                icon: "🎯",
+                title: "Beautiful Shots",
+                description: "Create stunning shots with beautiful frames for your images."
               }
             ].map((feature, index) => (
               <motion.div
@@ -145,6 +145,9 @@ export default function Home() {
               <div className="flex items-center space-x-4">
                 <Link href="/" className="text-gray-500 hover:text-gray-700">
                   Home
+                </Link>
+                <Link href="/shots" className="text-gray-500 hover:text-gray-700">
+                  Shots
                 </Link>
                 <Link href="https://github.com/ahmadrosid" className="text-gray-500 hover:text-gray-700">
                   GitHub
