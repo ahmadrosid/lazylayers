@@ -55,7 +55,14 @@ interface ThumbnailAction {
   payload: any;
 }
 
-export const thumbnailReducer = (state: ThumbnailState, action: ThumbnailAction) => {
+type Action =
+  | { type: "UPDATE_BACKGROUND_COLOR"; payload: string }
+  | { type: "UPDATE_FRAME"; payload: { backgroundColor: string; inset: string } }
+  | { type: "UPDATE_TITLE"; payload: { text: string; fontSize: number; color: string; tracking: string; lineHeight: string; maxWidth: number; fontFamily: string } }
+  | { type: "SET_CONFIG"; payload: { frame: any; content: any } }
+  | { type: "UPDATE_FRAME_SIZE"; payload: { value: string } };
+
+export const thumbnailReducer = (state: ThumbnailState, action: Action) => {
   switch (action.type) {
     case "UPDATE_BACKGROUND_COLOR":
       return {
@@ -89,6 +96,26 @@ export const thumbnailReducer = (state: ThumbnailState, action: ThumbnailAction)
             maxWidth: action.payload.maxWidth,
             fontFamily: action.payload.fontFamily,
           },
+        },
+      };
+    case "SET_CONFIG":
+      return {
+        ...state,
+        frame: {
+          ...state.frame,
+          ...action.payload.frame,
+        },
+        content: {
+          ...state.content,
+          ...action.payload.content,
+        },
+      };
+    case "UPDATE_FRAME_SIZE":
+      return {
+        ...state,
+        background: {
+          ...state.background,
+          aspectRatio: action.payload.value,
         },
       };
     default:

@@ -27,6 +27,8 @@ import {
   Fira_Mono,
   Fira_Code
 } from "next/font/google";
+import { templates } from "@/config/templates";
+import { TemplateModal } from "@/components/template-modal";
 
 const inter = Inter({ subsets: ["latin"] });
 const roboto = Roboto({ weight: ["400", "700"], subsets: ["latin"] });
@@ -406,6 +408,20 @@ export default function ThumbnailPage() {
             <Button className="w-full" onClick={handleDownload}>
               Save image
             </Button>
+          </div>
+          <div className="flex flex-col gap-4 p-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm">Settings</h3>
+              <TemplateModal
+                templates={templates}
+                onSelectTemplate={(template) => {
+                  dispatch({
+                    type: "SET_CONFIG",
+                    payload: template.config,
+                  });
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
