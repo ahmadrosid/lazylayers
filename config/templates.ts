@@ -59,7 +59,7 @@ export const templates: Template[] = [
     preview: "/templates/gradient-pop.png",
     config: {
       frame: {
-        backgroundColor: "linear-gradient(45deg, #FF6B6B, #4ECDC4)",
+        backgroundColor: "#0f172a",
         inset: "24px",
       },
       content: {

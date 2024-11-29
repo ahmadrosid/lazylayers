@@ -1,4 +1,5 @@
-import { Template } from "@/config/templates";
+import { useState } from "react";
+import { Button } from "./ui/button";
 import {
   Dialog,
   DialogContent,
@@ -7,7 +8,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import Image from "next/image";
-import { Button } from "./ui/button";
+import { Template } from "@/config/templates";
 
 interface TemplateModalProps {
   templates: Template[];
@@ -15,21 +16,30 @@ interface TemplateModalProps {
 }
 
 export function TemplateModal({ templates, onSelectTemplate }: TemplateModalProps) {
+  const [open, setOpen] = useState(false);
+
+  const handleTemplateSelect = (template: Template) => {
+    onSelectTemplate(template);
+    setOpen(false); // Close the modal after selection
+  };
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" className="text-sm">Select Template</Button>
+        <Button variant="outline" size="sm">
+          Templates
+        </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-4xl">
+      <DialogContent className="max-w-3xl">
         <DialogHeader>
-          <DialogTitle>Choose a Template</DialogTitle>
+          <DialogTitle>Choose Template</DialogTitle>
         </DialogHeader>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 p-4">
+        <div className="grid grid-cols-2 gap-4 p-4">
           {templates.map((template) => (
             <div
               key={template.id}
               className="relative group cursor-pointer rounded-lg overflow-hidden"
-              onClick={() => onSelectTemplate(template)}
+              onClick={() => handleTemplateSelect(template)}
             >
               <div className="aspect-[1200/630] relative">
                 <Image
