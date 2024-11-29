@@ -15,6 +15,33 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { GradientPicker } from "@/components/gradient-picker";
 import { Slider } from "@/components/ui/slider";
 import { DownloadIcon } from "lucide-react";
+import { initialState, thumbnailReducer } from "@/reducers/thumbnailReducer";
+import { 
+  Inter, 
+  Roboto, 
+  Oswald,
+  Playfair_Display,
+  Montserrat,
+  Poppins 
+} from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({ weight: ["400", "700"], subsets: ["latin"] });
+const oswald = Oswald({ subsets: ["latin"] });
+const playfair = Playfair_Display({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"] });
+const poppins = Poppins({ weight: ["400", "600"], subsets: ["latin"] });
+
+const fonts = {
+  inter: inter,
+  roboto: roboto,
+  oswald: oswald,
+  playfair: playfair,
+  montserrat: montserrat,
+  poppins: poppins,
+} as const;
+
+type FontFamily = keyof typeof fonts;
 
 const ratios = [
   {
@@ -27,107 +54,8 @@ const ratios = [
   },
 ];
 
-const initialState = {
-  options: {
-    tracking: [
-      ["tracking-tighter", "-0.05em"],
-      ["tracking-tight", "-0.025em"],
-      ["tracking-normal", "0em"],
-      ["tracking-wide", "0.025em"],
-      ["tracking-wider", "0.05em"],
-      ["tracking-widest", "0.1em"],
-    ],
-  },
-  background: {
-    color: "linear-gradient(-225deg, #FF057C 0%, #8D0B93 50%, #321575 100%)",
-    width: 1616,
-    height: 848,
-    aspectRatio: ratios[0].value,
-  },
-  frame: {
-    backgroundColor: "url(/images/noise-light.png)",
-    inset: "0px",
-  },
-  content: {
-    title: {
-      text: "Thumbnails Made Quicker Than Ever",
-      fontSize: 100,
-      color: "white",
-      tracking: "-0.025em",
-      lineHeight: "0.9",
-      maxWidth: 90,
-    },
-    description: {
-      text: "",
-      fontSize: "",
-      color: "",
-    },
-  },
-};
-
-const configReducer = (state: typeof initialState, action: any) => {
-  switch (action.type) {
-    case "UPDATE_BACKGROUND_COLOR":
-      return {
-        ...state,
-        background: {
-          ...state.background,
-          color: action.payload,
-        },
-      };
-    case "UPDATE_FRAME":
-      return {
-        ...state,
-        frame: {
-          ...state.frame,
-          backgroundColor: action.payload.backgroundColor,
-          inset: action.payload.inset,
-        },
-      };
-    case "UPDATE_TITLE":
-      return {
-        ...state,
-        content: {
-          ...state.content,
-          title: {
-            ...state.content.title,
-            text: action.payload.text,
-            fontSize: action.payload.fontSize,
-            color: action.payload.color,
-            tracking: action.payload.tracking,
-            lineHeight: action.payload.lineHeight,
-            maxWidth: action.payload.maxWidth,
-          },
-        },
-      };
-    case "UPDATE_DESCRIPTION":
-      return {
-        ...state,
-        content: {
-          ...state.content,
-          description: {
-            ...state.content.description,
-            text: action.payload.text,
-            fontSize: action.payload.fontSize,
-            color: action.payload.color,
-          },
-        },
-      };
-    case "UPDATE_FRAME_SIZE":
-      return {
-        ...state,
-        background: {
-          ...state.background,
-          aspectRatio: action.payload.value,
-        },
-      };
-    default:
-      return state;
-  }
-};
-
 export default function ThumbnailPage() {
-  const [config, dispatch] = useReducer(configReducer, initialState);
+  const [config, dispatch] = useReducer(thumbnailReducer, initialState);
   const [filename, setFilename] = useState(uuid().split("-").join(""));
 
   const content = useRef<HTMLDivElement>(null);
@@ -230,7 +158,11 @@ export default function ThumbnailPage() {
               ></div>
               <div className="p-8 z-50">
                 <p
-                  className="mx-auto transition-all"
+                  className={`mx-auto transition-all ${
+                    config.content.title.fontFamily && 
+                    fonts[config.content.title.fontFamily as FontFamily]?.className || 
+                    inter.className
+                  }`}
                   style={{
                     fontSize: config.content.title.fontSize,
                     fontWeight: "bold",
@@ -385,6 +317,31 @@ export default function ThumbnailPage() {
                     {key.split("-")[1]}
                   </SelectItem>
                 ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="py-4 px-4 border-b">
+            <Select
+              onValueChange={(val) =>
+                dispatch({
+                  type: "UPDATE_TITLE",
+                  payload: {
+                    ...config.content.title,
+                    fontFamily: val,
+                  },
+                })
+              }
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Font Family" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="inter">Inter</SelectItem>
+                <SelectItem value="roboto">Roboto</SelectItem>
+                <SelectItem value="oswald">Oswald</SelectItem>
+                <SelectItem value="playfair">Playfair Display</SelectItem>
+                <SelectItem value="montserrat">Montserrat</SelectItem>
+                <SelectItem value="poppins">Poppins</SelectItem>
               </SelectContent>
             </Select>
           </div>
