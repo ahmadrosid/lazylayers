@@ -22,7 +22,10 @@ import {
   Oswald,
   Playfair_Display,
   Montserrat,
-  Poppins 
+  Poppins,
+  Plus_Jakarta_Sans,
+  Fira_Mono,
+  Fira_Code
 } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -31,6 +34,9 @@ const oswald = Oswald({ subsets: ["latin"] });
 const playfair = Playfair_Display({ subsets: ["latin"] });
 const montserrat = Montserrat({ subsets: ["latin"] });
 const poppins = Poppins({ weight: ["400", "600"], subsets: ["latin"] });
+const plusJakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
+const firaMono = Fira_Mono({ weight: ["400", "500"], subsets: ["latin"] });
+const firaCode = Fira_Code({ subsets: ["latin"] });
 
 const fonts = {
   inter: inter,
@@ -39,6 +45,9 @@ const fonts = {
   playfair: playfair,
   montserrat: montserrat,
   poppins: poppins,
+  plusJakarta: plusJakarta,
+  firaMono: firaMono,
+  firaCode: firaCode,
 } as const;
 
 type FontFamily = keyof typeof fonts;
@@ -342,6 +351,9 @@ export default function ThumbnailPage() {
                 <SelectItem value="playfair">Playfair Display</SelectItem>
                 <SelectItem value="montserrat">Montserrat</SelectItem>
                 <SelectItem value="poppins">Poppins</SelectItem>
+                <SelectItem value="plusJakarta">Plus Jakarta Sans</SelectItem>
+                <SelectItem value="firaMono">Fira Mono</SelectItem>
+                <SelectItem value="firaCode">Fira Code</SelectItem>
               </SelectContent>
             </Select>
           </div>
