@@ -27,14 +27,14 @@ export function Header() {
                   Logo
                 </Button>
               </Link>
-              <Link href={"/collections"}>
-                <Button size="sm" variant="ghost">
-                  Collections
-                </Button>
-              </Link>
               <Link href={"/shots"}>
                 <Button size="sm" variant="ghost">
                   Shots
+                </Button>
+              </Link>
+              <Link href={"/collections"}>
+                <Button size="sm" variant="ghost">
+                  Collections
                 </Button>
               </Link>
               <Button size="sm" variant="ghost" className="opacity-30">
