@@ -41,9 +41,9 @@ export default function Home() {
           <div className="flex justify-center pb-8">
             <motion.p 
               whileHover={{ scale: 1.05 }}
-              className="bg-gradient-to-r from-purple-50 to-pink-50 text-gray-600 border border-gray-200/50 rounded-full p-1.5 px-6 text-sm font-medium tracking-tight cursor-pointer backdrop-blur-sm"
+              className="bg-white border border-gray-300 rounded-full p-1.5 px-3 text-sm font-medium tracking-tight cursor-pointer backdrop-blur-sm"
             >
-              ✨ Create stunning thumbnails in seconds
+              <span className="mr-2">✨</span> Design Your Story share your Passion
             </motion.p>
           </div>
           <div className="pb-6">
@@ -51,17 +51,17 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="scroll-m-20 text-6xl sm:text-7xl font-extrabold tracking-tighter max-w-4xl text-gray-900"
+              className="scroll-m-20 text-6xl sm:text-7xl font-extrabold tracking-tighter max-w-4xl mx-auto text-gray-900"
             >
-              Click-Worthy Thumbnails, Instantly
+              Create Stunning Thumbnails in Seconds 
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
-              className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto"
+              className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto"
             >
-              The fastest way to create beautiful thumbnails for your content. No design skills needed! 🎨
+              Stop wasting hours struggling with complicated design tools. Our drag-and-drop editor makes crafting click-worthy thumbnails a breeze. 
             </motion.p>
           </div>
           <motion.div 
@@ -96,9 +96,9 @@ export default function Home() {
           >
             <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg blur-3xl opacity-20 -z-10 transform -rotate-1"></div>
             <img 
-              src="https://res.cloudinary.com/dr15yjl8w/image/upload/v1698396814/7195172a903f4d9fa3eaf26f25c3ca37_z1mofb.png" 
+              src="https://raw.githubusercontent.com/ahmadrosid/lazylayers/main/demo.png" 
               alt="LazyLayers Preview" 
-              className="rounded-lg shadow-2xl border border-gray-100 max-w-5xl mx-auto hover:transform hover:scale-[1.02] transition-transform duration-300"
+              className="rounded-xl border-4 border-gray-300 ring-2 ring-pink-400 max-w-5xl mx-auto hover:transform hover:scale-[1.02] transition-transform duration-300"
             />
           </motion.div>
 
