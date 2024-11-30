@@ -20,6 +20,25 @@ import { buttonVariants } from "@/components/ui/button";
 
 type FrameStyle = "macos" | "windows" | "none";
 
+const ratios = [
+  {
+    label: "Open Graph",
+    value: "1.90476 / 1",
+  },
+  {
+    label: "YouTube",
+    value: "16 / 9",
+  },
+  {
+    label: "Square",
+    value: "1 / 1",
+  },
+  {
+    label: "Portrait",
+    value: "4 / 5",
+  },
+] as const;
+
 const frameStyles: Record<FrameStyle, {
   name: string;
   className: string;
@@ -77,6 +96,10 @@ export default function ShotsPage() {
 
   const frameStyle = frameStyles[config.frameStyle as keyof typeof frameStyles] ?? frameStyles.none;
   
+  const handleAspectRatioChange = (value: string) => {
+    dispatch({ type: "SET_ASPECT_RATIO", payload: value });
+  };
+
   return (
     <>
       <Head>
@@ -98,7 +121,19 @@ export default function ShotsPage() {
       <main className="min-h-screen flex">
         <div className="flex-1 bg-gray-50 relative">
           <div className="absolute z-0 inset-0 h-full w-full bg-gray-50 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-          <div className="p-1.5 flex border-b items-center bg-white z-10 relative">
+          <div className="p-1.5 flex border-b items-center bg-white z-10 relative gap-2">
+            <Select value={config.aspectRatio} onValueChange={handleAspectRatioChange}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Select aspect ratio" />
+              </SelectTrigger>
+              <SelectContent>
+                {ratios.map((ratio) => (
+                  <SelectItem key={ratio.value} value={ratio.value}>
+                    {ratio.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             <div className="flex-1 px-6">
               <div className="flex items-center gap-2">
                 Design a screenshot
@@ -115,21 +150,17 @@ export default function ShotsPage() {
               </Button>
             </div>
           </div>
-          <div className="p-8 flex items-center justify-center relative z-10">
+          <div className="flex-1 p-6 relative z-10">
             <div
-              id="frame"
               ref={content}
-              className={cn(
-                "bg-gradient-to-br transition-all duration-300 max-w-[1200px] w-full",
-                frameStyle.className
-              )}
               style={{
                 background: config.background,
                 padding: config.padding,
+                aspectRatio: config.aspectRatio,
               }}
             >
               {frameStyle.header}
-              <div className="relative aspect-video w-full overflow-hidden bg-white rounded-b-lg">
+              <div className="relative h-full w-full overflow-hidden bg-white rounded-b-lg">
                 {config.image ? (
                   <img 
                     src={config.image} 
@@ -201,7 +232,9 @@ export default function ShotsPage() {
                   reader.readAsDataURL(file);
                 }
               }}
-              className="w-full"
+              className={cn(
+                "w-full file:bg-gray-100 file:hover:bg-gray-200 file:text-primary file:hover:cursor-pointer file:border-0 file:mr-4 file:px-4 file:py-2 file:rounded-md cursor-pointer",
+              )}
             />
           </div>
 

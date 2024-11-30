@@ -6,6 +6,7 @@ export const initialState = {
   frameStyle: "macos" as "macos" | "windows" | "none",
   image: null as string | null,
   imageSize: "contain" as "contain" | "cover",
+  aspectRatio: "16 / 9",
 };
 
 export type ShotsState = typeof initialState;
@@ -16,7 +17,8 @@ export type ShotsAction =
   | { type: "SET_BACKGROUND"; payload: string }
   | { type: "SET_FRAME_STYLE"; payload: "macos" | "windows" | "none" }
   | { type: "SET_IMAGE"; payload: string | null }
-  | { type: "SET_IMAGE_SIZE"; payload: "contain" | "cover" };
+  | { type: "SET_IMAGE_SIZE"; payload: "contain" | "cover" }
+  | { type: "SET_ASPECT_RATIO"; payload: string };
 
 export function shotsReducer(state: ShotsState, action: ShotsAction): ShotsState {
   switch (action.type) {
@@ -34,6 +36,8 @@ export function shotsReducer(state: ShotsState, action: ShotsAction): ShotsState
       return { ...state, image: action.payload };
     case "SET_IMAGE_SIZE":
       return { ...state, imageSize: action.payload };
+    case "SET_ASPECT_RATIO":
+      return { ...state, aspectRatio: action.payload };
     default:
       return state;
   }
