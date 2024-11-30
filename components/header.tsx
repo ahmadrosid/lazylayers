@@ -47,7 +47,7 @@ export function Header() {
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <nav className="flex items-center">
             <a
-              href="https://github.com/ahmadrosid/TitleCrafters"
+              href="/login"
               target="_blank"
               className={cn(
                 buttonVariants({ variant: "link" }),
