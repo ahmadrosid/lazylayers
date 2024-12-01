@@ -122,22 +122,20 @@ export default function ShotsPage() {
         <div className="flex-1 bg-gray-50 relative">
           <div className="absolute z-0 inset-0 h-full w-full bg-gray-50 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
           <div className="p-1.5 flex border-b items-center bg-white z-10 relative gap-2">
-            <Select value={config.aspectRatio} onValueChange={handleAspectRatioChange}>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Select aspect ratio" />
-              </SelectTrigger>
-              <SelectContent>
-                {ratios.map((ratio) => (
-                  <SelectItem key={ratio.value} value={ratio.value}>
-                    {ratio.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <div className="flex-1 px-6">
-              <div className="flex items-center gap-2">
-                Design a screenshot
-              </div>
+            <div className="flex-1 gap-3 flex items-center">
+                Frame size
+                <Select value={config.aspectRatio} onValueChange={handleAspectRatioChange}>
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="Select aspect ratio" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {ratios.map((ratio) => (
+                      <SelectItem key={ratio.value} value={ratio.value}>
+                        {ratio.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
             </div>
             <div>
               <Button
