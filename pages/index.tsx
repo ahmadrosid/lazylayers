@@ -61,8 +61,8 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.4 }}
               className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto"
             >
-              Stop wasting hours struggling with complicated design tools. Our drag-and-drop editor makes crafting click-worthy thumbnails a breeze. 
-            </motion.p>
+              Stop wasting hours struggling with complicated design tools. Our intuitive editor makes crafting click-worthy thumbnails a breeze.
+          </motion.p>
           </div>
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
