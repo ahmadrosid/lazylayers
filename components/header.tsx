@@ -32,9 +32,11 @@ export function Header() {
                   Collections
                 </Button>
               </Link>
-              <Button size="sm" variant="ghost" className="opacity-30">
-                Carousel
-              </Button>
+              <Link href={"/carousel"}>
+                <Button size="sm" variant="ghost">
+                  Carousel
+                </Button>
+              </Link>
             </div>
           </nav>
         </div>
