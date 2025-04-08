@@ -96,7 +96,7 @@ export default function Home() {
           >
             <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg blur-3xl opacity-20 -z-10 transform -rotate-1"></div>
             <img 
-              src="https://raw.githubusercontent.com/ahmadrosid/lazylayers/main/demo.png" 
+              src="https://raw.githubusercontent.com/ahmadrosid/lazylayers/main/demo-lazy-layers.png" 
               alt="LazyLayers Preview" 
               className="rounded-xl border-4 border-gray-300 ring-2 ring-pink-400 max-w-5xl mx-auto hover:transform hover:scale-[1.02] transition-transform duration-300"
             />
