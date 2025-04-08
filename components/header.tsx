@@ -22,11 +22,6 @@ export function Header() {
                   Thumbnail
                 </Button>
               </Link>
-              <Link href={"/logo"}>
-                <Button size="sm" variant="ghost">
-                  Logo
-                </Button>
-              </Link>
               <Link href={"/shots"}>
                 <Button size="sm" variant="ghost">
                   Shots

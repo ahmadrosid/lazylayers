@@ -70,7 +70,7 @@ export default function Home() {
             transition={{ duration: 0.7, delay: 0.6 }}
             className="flex justify-center items-center gap-4 mb-12"
           >
-            <Link href="/shots">
+            <Link href="/thumbnail">
               <Button 
                 size="lg" 
                 className="text-lg px-8 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
