@@ -18,12 +18,6 @@ import {
 const sans = Plus_Jakarta_Sans({ subsets: ["latin"] });
 const display = Playfair_Display({ subsets: ["latin"] });
 
-const proofPoints = [
-  { value: "3", label: "focused surfaces" },
-  { value: "0", label: "login walls" },
-  { value: "1 click", label: "PNG export" },
-];
-
 const studioSurfaces = [
   {
     title: "Thumbnail Studio",
@@ -179,29 +173,8 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.42 }}
-                className="mt-10 grid max-w-xl gap-3 sm:grid-cols-3"
-              >
-                {proofPoints.map((point) => (
-                  <div
-                    key={point.label}
-                    className="rounded-[1.5rem] bg-white/72 px-5 py-4 shadow-[0_14px_36px_rgba(28,25,23,0.07)] backdrop-blur"
-                  >
-                    <div className="text-2xl font-semibold tracking-tight text-stone-900">
-                      {point.value}
-                    </div>
-                    <div className="mt-1 text-sm text-stone-500">
-                      {point.label}
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.5 }}
-                className="mt-7 flex flex-wrap gap-3 text-sm text-stone-600"
+                className="mt-10 flex flex-wrap gap-3 text-sm text-stone-600"
               >
                 {[
                   "Fast editor",
@@ -378,13 +351,11 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="space-y-0 px-6 py-4 sm:px-8 sm:py-6">
+              <div className="grid gap-3 px-6 py-4 sm:px-8 sm:py-6">
                 {workflow.map((item, index) => (
                   <div
                     key={item.step}
-                    className={`grid gap-4 rounded-[1.5rem] px-4 py-5 sm:grid-cols-[auto_1fr] sm:gap-6 sm:px-5 ${
-                      index < workflow.length - 1 ? "mb-3" : ""
-                    } bg-white/[0.04]`}
+                    className="grid gap-6 rounded-[1.5rem] bg-white/[0.04] px-4 py-5 sm:grid-cols-[auto_1fr] sm:gap-8 sm:px-5"
                   >
                     <div className="text-4xl font-semibold leading-none text-[#f59e0b]">
                       {item.step}
