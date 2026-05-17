@@ -1,164 +1,490 @@
-import { Plus_Jakarta_Sans } from "next/font/google";
+import demoImage from "../demo.png";
+import Image from "next/image";
+import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Head from "next/head";
 import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  CheckCircle2,
+  Download,
+  FolderOpen,
+  ImageIcon,
+  LayoutTemplate,
+  Sparkles,
+} from "lucide-react";
 
-const inter = Plus_Jakarta_Sans({ subsets: ["latin"] });
+const sans = Plus_Jakarta_Sans({ subsets: ["latin"] });
+const display = Playfair_Display({ subsets: ["latin"] });
+
+const proofPoints = [
+  { value: "3", label: "focused surfaces" },
+  { value: "0", label: "login walls" },
+  { value: "1 click", label: "PNG export" },
+];
+
+const studioSurfaces = [
+  {
+    title: "Thumbnail Studio",
+    description:
+      "Shape a cover fast with bold type, gradients, frames, and an export-ready canvas.",
+    href: "/thumbnail",
+    eyebrow: "Build the hero image",
+    Icon: LayoutTemplate,
+    tone: "from-[#fff2cf] via-white to-[#ffd8b4]",
+  },
+  {
+    title: "Shots",
+    description:
+      "Frame product shots and polished social visuals without leaving the app.",
+    href: "/shots",
+    eyebrow: "Polish the supporting visuals",
+    Icon: ImageIcon,
+    tone: "from-[#dff4ff] via-white to-[#d9e7ff]",
+  },
+  {
+    title: "Collections",
+    description:
+      "Save inspiring references before they disappear and keep your creative pipeline full.",
+    href: "/collections",
+    eyebrow: "Collect what works",
+    Icon: FolderOpen,
+    tone: "from-[#dff7ec] via-white to-[#f5f0d8]",
+  },
+];
+
+const workflow = [
+  {
+    step: "01",
+    title: "Start from a direction, not a blank page.",
+    description:
+      "Jump into thumbnails, shots, or saved references depending on what the idea needs first.",
+  },
+  {
+    step: "02",
+    title: "Push the composition quickly.",
+    description:
+      "Use the editor to test type scale, image placement, and background energy without fighting a heavy design stack.",
+  },
+  {
+    step: "03",
+    title: "Export and move on.",
+    description:
+      "Download the result when it feels right and keep momentum instead of getting stuck in tooling.",
+  },
+];
 
 export default function Home() {
   return (
     <>
       <Head>
-        <title>Lazylayers - Design Your Story, Share Your Passion</title>
+        <title>LazyLayers - Slick Covers Without the Overhead</title>
         <link rel="canonical" href={"https://lazylayers.ahmadrosid.com/"} />
         <meta property="og:url" content="https://lazylayers.ahmadrosid.com/" />
         <meta property="og:type" content="website" />
         <meta
           property="og:title"
-          content="LazyLayers - Design Your Story, Share Your Passion"
+          content="LazyLayers - Slick Covers Without the Overhead"
         />
         <meta
           property="og:image:alt"
-          content="LazyLayers - Design Your Story, Share Your Passion"
+          content="LazyLayers - Slick Covers Without the Overhead"
         />
         <meta
           property="og:description"
-          content="LazyLayers - Design Your Story, Share Your Passion"
+          content="Build thumbnails, shots, and creative collections from one focused workspace."
         />
         <meta
           property="og:image"
           content="https://res.cloudinary.com/dr15yjl8w/image/upload/v1698396814/7195172a903f4d9fa3eaf26f25c3ca37_z1mofb.png"
         />
       </Head>
-      <main className={`${inter.className} container mx-auto py-8 overflow-x-hidden`}>
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="pb-16 pt-16 text-center grid place-content-center"
-        >
-          <div className="flex justify-center pb-8">
-            <motion.p 
-              whileHover={{ scale: 1.05 }}
-              className="bg-white border border-gray-300 rounded-full p-1.5 px-3 text-sm font-medium tracking-tight cursor-pointer backdrop-blur-sm"
-            >
-              <span className="mr-2">✨</span> Design Your Story share your Passion
-            </motion.p>
-          </div>
-          <div className="pb-6">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="scroll-m-20 text-6xl sm:text-7xl font-extrabold tracking-tighter max-w-4xl mx-auto text-gray-900"
-            >
-              Create Stunning Thumbnails in Seconds 
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-              className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto"
-            >
-              Stop wasting hours struggling with complicated design tools. Our intuitive editor makes crafting click-worthy thumbnails a breeze.
-          </motion.p>
-          </div>
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
-            className="flex justify-center items-center gap-4 mb-12"
-          >
-            <Link href="/thumbnail">
-              <Button 
-                size="lg" 
-                className="text-lg px-8 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
-              >
-                Get Started Free ✨
-              </Button>
-            </Link>
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.8 }}
-              className="text-gray-600 flex items-center gap-2"
-            >
-              <span>✓</span> No login required!
-            </motion.p>
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.8 }}
-            className="mb-16 relative"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg blur-3xl opacity-20 -z-10 transform -rotate-1"></div>
-            <img 
-              src="https://raw.githubusercontent.com/ahmadrosid/lazylayers/main/demo.png" 
-              alt="LazyLayers Preview" 
-              className="rounded-xl border-4 border-gray-300 ring-2 ring-pink-400 max-w-5xl mx-auto hover:transform hover:scale-[1.02] transition-transform duration-300"
-            />
-          </motion.div>
+      <main
+        className={`${sans.className} relative overflow-hidden bg-[#f6f0e7] text-stone-900`}
+      >
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.08]"
+          style={{ backgroundImage: "url('/images/noise-light.png')" }}
+        />
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-[44rem]"
+          style={{
+            background:
+              "radial-gradient(circle at 12% 12%, rgba(255, 214, 148, 0.95), transparent 28%), radial-gradient(circle at 82% 14%, rgba(110, 180, 255, 0.55), transparent 18%), linear-gradient(180deg, #fbf4ea 0%, #f6f0e7 60%, #efe5d8 100%)",
+          }}
+        />
 
-          <div className="grid sm:grid-cols-3 gap-8 max-w-5xl mx-auto text-left">
-            {[
-              {
-                icon: "🎨",
-                title: "Beautiful Templates",
-                description: "Start with professionally designed templates and customize them to match your style."
-              },
-              {
-                icon: "⚡️",
-                title: "Lightning Fast",
-                description: "Create stunning thumbnails in seconds with our intuitive drag-and-drop editor."
-              },
-              {
-                icon: "🎯",
-                title: "Beautiful Shots",
-                description: "Create stunning shots with beautiful frames for your images."
-              }
-            ].map((feature, index) => (
+        <section className="relative mx-auto max-w-[1320px] px-4 pb-20 pt-12 sm:px-6 lg:px-8 lg:pb-24 lg:pt-20">
+          <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div className="max-w-2xl">
               <motion.div
-                key={feature.title}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45 }}
+                className="inline-flex items-center gap-2 rounded-full bg-white/75 px-4 py-2 text-sm font-medium text-stone-700 shadow-[0_10px_28px_rgba(28,25,23,0.07)] backdrop-blur"
+              >
+                <Sparkles className="h-4 w-4 text-[#d97706]" />
+                Thumbnail studio with taste
+              </motion.div>
+
+              <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1 + (index * 0.2) }}
-                whileHover={{ y: -5 }}
-                className="p-6 rounded-xl bg-white/50 border border-gray-100 hover:border-purple-200 hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 transition-all duration-300"
+                transition={{ duration: 0.55, delay: 0.12 }}
+                className={`${display.className} mt-6 max-w-4xl text-5xl leading-[0.95] tracking-tight text-stone-900 sm:text-6xl lg:text-7xl`}
               >
-                <div className="text-3xl mb-2">{feature.icon}</div>
-                <h3 className="text-xl font-semibold mb-2 text-gray-800">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-        <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]">
-          <div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_800px_at_50%_200px,#f8f6ff,transparent)]"></div>
-        </div>
+                Make your covers feel
+                <span className="italic text-[#d97706]"> expensive </span>
+                before you open a heavy design tool.
+              </motion.h1>
 
-        <footer className="mt-24 border-t border-gray-200 pt-8 pb-12">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="flex items-center space-x-4">
-                <Link href="/" className="text-gray-500 hover:text-gray-700">
-                  Home
+              <motion.p
+                initial={{ opacity: 0, y: 22 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.24 }}
+                className="mt-6 max-w-xl text-lg leading-8 text-stone-600 sm:text-xl"
+              >
+                LazyLayers gives you a tight workspace for bold thumbnails,
+                polished shots, and saved references so you can move from idea
+                to export without tool bloat.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.34 }}
+                className="mt-9 flex flex-wrap items-center gap-4"
+              >
+                <Link href="/thumbnail">
+                  <Button
+                    size="lg"
+                    className="rounded-full bg-stone-900 px-8 text-base text-[#f6f0e7] shadow-[0_18px_50px_rgba(28,25,23,0.16)] hover:bg-stone-800"
+                  >
+                    Start with Thumbnail
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
                 </Link>
-                <Link href="/shots" className="text-gray-500 hover:text-gray-700">
+                <Link href="/shots">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="rounded-full border-transparent bg-white/75 px-8 text-base text-stone-700 shadow-[0_10px_28px_rgba(28,25,23,0.07)] hover:bg-white"
+                  >
+                    Explore Shots
+                  </Button>
+                </Link>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.42 }}
+                className="mt-10 grid max-w-xl gap-3 sm:grid-cols-3"
+              >
+                {proofPoints.map((point) => (
+                  <div
+                    key={point.label}
+                    className="rounded-[1.5rem] bg-white/72 px-5 py-4 shadow-[0_14px_36px_rgba(28,25,23,0.07)] backdrop-blur"
+                  >
+                    <div className="text-2xl font-semibold tracking-tight text-stone-900">
+                      {point.value}
+                    </div>
+                    <div className="mt-1 text-sm text-stone-500">
+                      {point.label}
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.5 }}
+                className="mt-7 flex flex-wrap gap-3 text-sm text-stone-600"
+              >
+                {[
+                  "Fast editor",
+                  "Focused routes",
+                  "No sign-in noise",
+                  "Built for makers",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="inline-flex items-center gap-2 rounded-full bg-stone-900/5 px-3 py-1.5"
+                  >
+                    <CheckCircle2 className="h-4 w-4 text-[#0f766e]" />
+                    {item}
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 28, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.65, delay: 0.18 }}
+              className="relative mx-auto w-full max-w-[620px]"
+            >
+              <div className="absolute -left-8 top-10 hidden h-32 w-32 rounded-full bg-[#0f766e]/25 blur-3xl lg:block" />
+              <div className="absolute -right-10 bottom-8 hidden h-40 w-40 rounded-full bg-[#f97316]/20 blur-3xl lg:block" />
+
+              <div className="relative overflow-hidden rounded-[2rem] bg-[#16151b] p-4 shadow-[0_36px_120px_rgba(28,25,23,0.22)]">
+                <div
+                  className="absolute inset-0 bg-cover bg-center opacity-70"
+                  style={{
+                    backgroundImage:
+                      "url('/images/background/deep-dusk-003.jpg')",
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-black/10 via-black/20 to-[#05060f]/80" />
+
+                <div className="relative rounded-[1.5rem] bg-white/10 p-3 backdrop-blur-sm">
+                  <div className="mb-3 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="h-2.5 w-2.5 rounded-full bg-white/45" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-white/35" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-white/25" />
+                    </div>
+                    <div className="rounded-full bg-white/10 px-3 py-1 text-[0.65rem] font-medium uppercase tracking-[0.3em] text-white/70">
+                      Live canvas
+                    </div>
+                  </div>
+
+                  <div className="overflow-hidden rounded-[1.25rem] bg-[#fbf7f1] shadow-inner">
+                    <Image
+                      src={demoImage}
+                      alt="LazyLayers editor preview"
+                      priority
+                      className="origin-top scale-[1.08] -translate-y-8"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="absolute -left-6 top-8 hidden rounded-[1.5rem] bg-white/85 px-4 py-4 shadow-xl backdrop-blur lg:block">
+                <div className="text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-stone-500">
+                  Thumbnail
+                </div>
+                <div className="mt-2 max-w-[10rem] text-sm font-medium text-stone-800">
+                  Build the main visual before the idea cools off.
+                </div>
+              </div>
+
+              <div className="absolute -right-4 top-20 hidden rounded-[1.5rem] bg-[#f9dcc2] px-4 py-4 shadow-xl lg:block">
+                <div className="text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-stone-600">
                   Shots
+                </div>
+                <div className="mt-2 max-w-[10rem] text-sm font-medium text-stone-800">
+                  Export product and promo visuals without switching context.
+                </div>
+              </div>
+
+              <div className="absolute bottom-4 left-10 hidden rounded-[1.5rem] bg-[#dff4ff] px-4 py-4 shadow-xl lg:block">
+                <div className="text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-stone-600">
+                  Collections
+                </div>
+                <div className="mt-2 max-w-[11rem] text-sm font-medium text-stone-800">
+                  Save references the second they feel worth stealing from.
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="relative mx-auto max-w-[1320px] px-4 pb-20 sm:px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.36 }}
+              className="rounded-[2rem] bg-white/62 p-6 shadow-[0_20px_56px_rgba(28,25,23,0.08)] backdrop-blur sm:p-8"
+            >
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <div className="text-sm font-semibold uppercase tracking-[0.28em] text-stone-500">
+                    Pick a surface
+                  </div>
+                  <h2
+                    className={`${display.className} mt-3 text-3xl tracking-tight text-stone-900 sm:text-4xl`}
+                  >
+                    Every route has one clear job.
+                  </h2>
+                </div>
+              </div>
+
+              <div className="mt-8 grid gap-4">
+                {studioSurfaces.map((surface, index) => (
+                  <motion.div
+                    key={surface.title}
+                    initial={{ opacity: 0, y: 18 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.45, delay: 0.48 + index * 0.08 }}
+                  >
+                    <Link
+                      href={surface.href}
+                      className={`group block rounded-[1.75rem] bg-gradient-to-br ${surface.tone} p-5 shadow-[0_16px_40px_rgba(28,25,23,0.06)] transition-transform duration-300 hover:-translate-y-1`}
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <div className="text-[0.7rem] font-semibold uppercase tracking-[0.26em] text-stone-500">
+                            {surface.eyebrow}
+                          </div>
+                          <h3 className="mt-3 text-2xl font-semibold tracking-tight text-stone-900">
+                            {surface.title}
+                          </h3>
+                          <p className="mt-3 max-w-lg text-sm leading-7 text-stone-600 sm:text-base">
+                            {surface.description}
+                          </p>
+                        </div>
+                        <div className="rounded-2xl bg-stone-900 p-3 text-[#f6f0e7] shadow-lg">
+                          <surface.Icon className="h-5 w-5" />
+                        </div>
+                      </div>
+                      <div className="mt-6 inline-flex items-center text-sm font-semibold text-stone-900">
+                        Open route
+                        <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      </div>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.44 }}
+              className="overflow-hidden rounded-[2rem] bg-stone-900 text-[#f6f0e7] shadow-[0_24px_80px_rgba(28,25,23,0.14)]"
+            >
+              <div
+                className="px-6 py-6 sm:px-8"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(27, 96, 84, 0.55), rgba(9, 13, 23, 0.85)), url('/images/background/beautiful-blue-004.jpg') center/cover",
+                }}
+              >
+                <div className="text-sm font-semibold uppercase tracking-[0.28em] text-white/60">
+                  Workflow
+                </div>
+                <h2
+                  className={`${display.className} mt-3 text-3xl tracking-tight sm:text-4xl`}
+                >
+                  Move like a creator, not like a committee.
+                </h2>
+                <p className="mt-4 max-w-xl text-sm leading-7 text-white/70 sm:text-base">
+                  The app is tight on purpose: less setup, less tool-switching,
+                  and more room for making fast, sharp decisions.
+                </p>
+              </div>
+
+              <div className="space-y-0 px-6 py-4 sm:px-8 sm:py-6">
+                {workflow.map((item, index) => (
+                  <div
+                    key={item.step}
+                    className={`grid gap-4 rounded-[1.5rem] px-4 py-5 sm:grid-cols-[auto_1fr] sm:gap-6 sm:px-5 ${
+                      index < workflow.length - 1 ? "mb-3" : ""
+                    } bg-white/[0.04]`}
+                  >
+                    <div className="text-4xl font-semibold leading-none text-[#f59e0b]">
+                      {item.step}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold tracking-tight">
+                        {item.title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-white/70 sm:text-base">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="relative mx-auto max-w-[1320px] px-4 pb-12 sm:px-6 lg:px-8 lg:pb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.52 }}
+            className="overflow-hidden rounded-[2rem] bg-white/74 shadow-[0_18px_48px_rgba(28,25,23,0.08)] backdrop-blur"
+          >
+            <div className="grid gap-6 px-6 py-8 sm:px-8 lg:grid-cols-[1fr_auto] lg:items-center lg:px-10 lg:py-10">
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-stone-900/5 px-3 py-1.5 text-sm font-medium text-stone-600">
+                  <Download className="h-4 w-4" />
+                  Ready when you are
+                </div>
+                <h2
+                  className={`${display.className} mt-4 text-3xl tracking-tight text-stone-900 sm:text-4xl`}
+                >
+                  Open the editor and make the first one ugly, fast, then good.
+                </h2>
+                <p className="mt-4 max-w-2xl text-sm leading-7 text-stone-600 sm:text-base">
+                  That is the whole point of LazyLayers. Start rough, iterate
+                  quickly, export when it clicks.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                <Link href="/thumbnail">
+                  <Button
+                    size="lg"
+                    className="rounded-full bg-stone-900 px-8 text-[#f6f0e7] hover:bg-stone-800"
+                  >
+                    Open Thumbnail
+                  </Button>
                 </Link>
-                <Link href="https://github.com/ahmadrosid" className="text-gray-500 hover:text-gray-700">
-                  GitHub
-                </Link>
-                <Link href="https://twitter.com/_ahmadrosid" className="text-gray-500 hover:text-gray-700">
-                  Twitter
+                <Link href="/collections">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="rounded-full border-transparent bg-[#efe6d8] px-8 text-stone-700 shadow-[0_10px_28px_rgba(28,25,23,0.06)] hover:bg-white"
+                  >
+                    Browse Collections
+                  </Button>
                 </Link>
               </div>
-              <div className="text-gray-400 text-sm">
-                &copy; {new Date().getFullYear()} LazyLayers. Made with &hearts; by Ahmad Rosid
-              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        <footer className="relative mx-auto max-w-[1320px] px-4 pb-10 sm:px-6 lg:px-8">
+          <div className="flex flex-col gap-4 py-6 text-sm text-stone-500 md:flex-row md:items-center md:justify-between">
+            <div className="flex flex-wrap items-center gap-4">
+              <Link href="/" className="hover:text-stone-900">
+                Home
+              </Link>
+              <Link href="/thumbnail" className="hover:text-stone-900">
+                Thumbnail
+              </Link>
+              <Link href="/shots" className="hover:text-stone-900">
+                Shots
+              </Link>
+              <Link href="/collections" className="hover:text-stone-900">
+                Collections
+              </Link>
+            </div>
+            <div className="flex flex-wrap items-center gap-4">
+              <a
+                href="https://github.com/ahmadrosid/lazylayers"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-stone-900"
+              >
+                GitHub
+              </a>
+              <a
+                href="https://twitter.com/_ahmadrosid"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-stone-900"
+              >
+                Twitter
+              </a>
+              <span>&copy; {new Date().getFullYear()} LazyLayers</span>
             </div>
           </div>
         </footer>

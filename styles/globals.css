@@ -74,23 +74,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-
-.design_elements {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-}
-
-
-.casual_white .design_elements {
-  background-size: 200% 100%;
-  background-image: url("https://www.aicarousels.com/img/casual_white.svg");
-  opacity: .25;
-  background-position: 100% 100% !important;
-}

@@ -40,13 +40,15 @@ export default function Home() {
 
   const searchParams = useSearchParams();
 
-  const handleSaveThumbnail = useCallback(() => {
-    if (inputUrl === "") return;
+  const handleSaveThumbnail = useCallback((urlToSave = inputUrl) => {
+    if (urlToSave === "") return;
+
+    const videoId = getYoutubeVideoId(urlToSave);
+    if (videoId === null) return;
+
+    setInputUrl("");
 
     setThumbnails((prev) => {
-      const videoId = getYoutubeVideoId(inputUrl);
-      if (videoId === null) return prev;
-
       const parsedUrl = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
       const newData = [
         {
@@ -58,8 +60,6 @@ export default function Home() {
       ];
 
       window.localStorage.setItem("saved-thumbnails", JSON.stringify(newData));
-      setInputUrl("");
-
       return newData;
     });
   }, [inputUrl]);
@@ -84,32 +84,38 @@ export default function Home() {
 
   useEffect(() => {
     const savedData = window.localStorage.getItem("saved-thumbnails");
-    if (savedData) {
-      setThumbnails(JSON.parse(savedData));
-    }
-
     const origin = window.location.origin;
-    if (origin) {
-      setBookmarklet(
-        `<a href="javascript:window.location='${window.location.origin}/collections?url='+encodeURIComponent(document.location)">
+    const bookmarkletHtml = origin
+      ? `<a href="javascript:window.location='${window.location.origin}/collections?url='+encodeURIComponent(document.location)">
     Save thumbnail
   </a>`
-      );
-    }
+      : "";
+
+    const timeoutId = window.setTimeout(() => {
+      if (savedData) {
+        setThumbnails(JSON.parse(savedData));
+      }
+
+      if (bookmarkletHtml) {
+        setBookmarklet(bookmarkletHtml);
+      }
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
   }, []);
 
   useEffect(() => {
     const url = searchParams.get("url");
     if (!url) return;
 
-    const isSaved = thumbnails.filter((thumbnail) => thumbnail.url === url);
-    console.log(isSaved);
-    if (isSaved.length === 0) {
-      setInputUrl(url);
-      setTimeout(() => {
-        handleSaveThumbnail();
-      }, 600);
-    }
+    const isSaved = thumbnails.some((thumbnail) => thumbnail.url === url);
+    if (isSaved) return;
+
+    const timeoutId = window.setTimeout(() => {
+      handleSaveThumbnail(url);
+    }, 600);
+
+    return () => window.clearTimeout(timeoutId);
   }, [thumbnails, searchParams, handleSaveThumbnail]);
 
   return (
@@ -158,7 +164,7 @@ export default function Home() {
               value={inputUrl}
               onChange={(e) => setInputUrl(e.currentTarget.value)}
             />
-            <Button onClick={handleSaveThumbnail}>
+            <Button onClick={() => handleSaveThumbnail()}>
               <HardDriveDownload className="w-4 h-5 mr-2" /> Save
             </Button>
           </div>
