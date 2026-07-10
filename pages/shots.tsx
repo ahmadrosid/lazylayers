@@ -41,18 +41,21 @@ const ratios = [
 
 const frameStyles: Record<FrameStyle, {
   name: string;
-  className: string;
+  outerClassName: string;
+  innerClassName: string;
   header?: React.ReactNode;
 }> = {
   none: {
     name: "No Frame",
-    className: "rounded-lg overflow-hidden",
+    outerClassName: "",
+    innerClassName: "",
   },
   macos: {
     name: "macOS",
-    className: "overflow-hidden bg-[#f6f6f6] shadow-xl",
+    outerClassName: "drop-shadow-xl",
+    innerClassName: "bg-[#f6f6f6]",
     header: (
-      <div className="h-7 bg-[#e4e4e4] flex items-center px-3 gap-2 rounded-t-lg">
+      <div className="h-7 bg-[#e4e4e4] flex items-center px-3 gap-2 shrink-0">
         <div className="w-3 h-3 rounded-full bg-[#ff5f57]"></div>
         <div className="w-3 h-3 rounded-full bg-[#febc2e]"></div>
         <div className="w-3 h-3 rounded-full bg-[#28c840]"></div>
@@ -61,9 +64,10 @@ const frameStyles: Record<FrameStyle, {
   },
   windows: {
     name: "Windows",
-    className: "rounded-lg overflow-hidden bg-white shadow-xl border border-[#dfdfdf]",
+    outerClassName: "drop-shadow-xl",
+    innerClassName: "bg-white border border-[#dfdfdf]",
     header: (
-      <div className="h-8 bg-white border-b border-[#dfdfdf] flex items-center justify-end px-3 gap-2 rounded-t-lg">
+      <div className="h-8 bg-white border-b border-[#dfdfdf] flex items-center justify-end px-3 gap-2 shrink-0">
         <div className="w-3 h-3 rounded-sm hover:bg-gray-200">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
         </div>
@@ -153,28 +157,47 @@ export default function ShotsPage() {
             </div>
           </div>
           <div className="absolute z-0 inset-0 h-full w-full bg-gray-50 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-          <div className="flex-1 p-6 relative z-10">
+          <div className="flex-1 p-6 relative z-10 flex flex-col">
             <div
               ref={content}
+              className="flex w-full flex-col"
               style={{
                 background: config.background,
                 padding: config.padding,
                 aspectRatio: config.aspectRatio,
               }}
             >
-              {frameStyle.header}
-              <div className="relative h-full w-full overflow-hidden bg-white rounded-b-lg">
-                {config.image ? (
-                  <img 
-                    src={config.image} 
-                    alt="Uploaded preview"
-                    className={`w-full h-full object-${config.imageSize}`}
-                  />
-                ) : (
-                  <div className="flex items-center justify-center h-full text-gray-400">
-                    <p>Upload an image to preview</p>
-                  </div>
+              <div
+                className={cn(
+                  "h-full w-full",
+                  frameStyle.outerClassName,
                 )}
+              >
+                <div
+                  className={cn(
+                    "grid h-full w-full overflow-hidden",
+                    frameStyle.innerClassName,
+                  )}
+                  style={{
+                    borderRadius: config.radius,
+                    gridTemplateRows: frameStyle.header ? "auto 1fr" : "1fr",
+                  }}
+                >
+                  {frameStyle.header}
+                  <div className="relative min-h-0 h-full w-full bg-white">
+                    {config.image ? (
+                      <img
+                        src={config.image}
+                        alt="Uploaded preview"
+                        className={`w-full h-full object-${config.imageSize}`}
+                      />
+                    ) : (
+                      <div className="flex items-center justify-center h-full text-gray-400">
+                        <p>Upload an image to preview</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -273,6 +296,22 @@ export default function ShotsPage() {
               onValueChange={(value) =>
                 dispatch({
                   type: "SET_PADDING",
+                  payload: value[0],
+                })
+              }
+            />
+          </div>
+
+          <div className="space-y-4">
+            <p className="font-medium">Radius</p>
+            <Slider
+              defaultValue={[config.radius]}
+              min={0}
+              max={100}
+              step={1}
+              onValueChange={(value) =>
+                dispatch({
+                  type: "SET_RADIUS",
                   payload: value[0],
                 })
               }

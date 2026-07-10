@@ -1,7 +1,7 @@
 export const initialState = {
   gradient: "linear-gradient(120deg, #f093fb 0%, #f5576c 100%)",
   padding: 32,
-  radius: 16,
+  radius: 8,
   background: "linear-gradient(120deg, #f093fb 0%, #f5576c 100%)",
   frameStyle: "macos" as "macos" | "windows" | "none",
   image: null as string | null,
