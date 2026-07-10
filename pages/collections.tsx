@@ -142,7 +142,10 @@ export default function Home() {
           content="https://res.cloudinary.com/dr15yjl8w/image/upload/v1698396814/7195172a903f4d9fa3eaf26f25c3ca37_z1mofb.png"
         />
       </Head>
-      <main className={`${inter.className} container mx-auto py-8`}>
+      <main className={`${inter.className} relative min-h-screen`}>
+        <div className="absolute inset-0 z-0 h-full w-full bg-gray-50 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+
+        <div className="relative z-10 container mx-auto py-8">
         <div className="pb-4 text-start grid place-content-start">
           <div className="pb-8">
             <h1 className="scroll-m-20 text-3xl font-extrabold tracking-tighter max-w-4xl">
@@ -168,9 +171,6 @@ export default function Home() {
               <HardDriveDownload className="w-4 h-5 mr-2" /> Save
             </Button>
           </div>
-        </div>
-        <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]">
-          <div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#f8fafc,transparent)]"></div>
         </div>
 
         {thumbnails.length > 0 && (
@@ -211,6 +211,7 @@ export default function Home() {
             ))}
           </div>
         )}
+        </div>
       </main>
     </>
   );
