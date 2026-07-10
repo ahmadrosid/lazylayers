@@ -224,8 +224,8 @@ export default function ThumbnailPage() {
           content="https://res.cloudinary.com/dr15yjl8w/image/upload/v1698396814/7195172a903f4d9fa3eaf26f25c3ca37_z1mofb.png"
         />
       </Head>
-      <div className="flex">
-        <div className="flex-1 max-h-screen relative">
+      <main className="min-h-screen flex">
+        <div className="flex-1 bg-gray-50 relative flex flex-col">
           <div className="p-1.5 flex border-b items-center bg-white z-10 relative">
             <div className="flex-1 px-6">
               <div className="flex items-center gap-2">
@@ -265,7 +265,7 @@ export default function ThumbnailPage() {
             </div>
           </div>
           <div className="absolute z-0 inset-0 h-full w-full bg-gray-50 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-          <div className="overflow-hidden bg-white flex justify-center items-start p-8">
+          <div className="flex-1 p-6 relative z-10 flex justify-center items-start">
             <div
               ref={content}
               className="w-full h-full p-6 grid place-content-center text-center relative rounded-[4px] transition-all"
@@ -312,7 +312,8 @@ export default function ThumbnailPage() {
             </div>
           </div>
         </div>
-        <div className="w-[20rem] h-[92vh] overflow-y-auto border-l bg-white">
+        <div className="sticky top-11 flex h-[calc(100vh-2.75rem)] w-[20rem] shrink-0 flex-col self-start border-l bg-white">
+          <div className="min-h-0 flex-1 overflow-y-auto scrollbar-hide">
           <div className="p-1.5">
             <p
               className={buttonVariants({
@@ -659,8 +660,9 @@ export default function ThumbnailPage() {
               />
             </div>
           </div>
+          </div>
         </div>
-      </div>
+      </main>
     </>
   );
 }
